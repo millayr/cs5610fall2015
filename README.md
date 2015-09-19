@@ -1,3 +1,4 @@
-The OpenShift `nodejs` cartridge documentation can be found at:
+# Web Development
 
-http://openshift.github.io/documentation/oo_cartridge_guide.html#nodejs
+1.  Tested node.js locally with hello.js
+2.  Openshift URL here:  http://cs5610-millayryan.rhcloud.com/
