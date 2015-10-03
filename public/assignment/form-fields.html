@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Form Maker - Form Fields</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet"/>
+	<link href="./css/style.css" rel="stylesheet"/>
+</head>
+
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Form Maker</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Username</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<ul class="nav nav-sidebar">
+					<li><a href="home.html">Home</a></li>
+					<li><a href="profile.html">Profile</a></li>
+					<li><a href="admin.html">Admin</a></li>
+					<li class="active"><a href="forms.html">Forms</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2">
+				<h1 class="page-header">Forms</h1>
+
+				<ul class="nav nav-tabs">
+				  <li role="presentation"><a href="forms.html">Forms</a></li>
+				  <li role="presentation" class="active"><a href="forms-fields.html">Fields</a></li>
+				</ul>
+
+				<form id="form-fields">
+					<div class="row">
+						<div class="form-group col-xs-7">
+							<label for="first-name">First Name:</label>
+							<input id="first-name" type="text" class="form-control" placeholder="First Name">
+						</div>
+						<div class="form-group col-xs-5 text-center valign">
+							<span class="glyphicon glyphicon-pencil action-icon" aria-hidden="true"></span><span class="glyphicon glyphicon-plus action-icon" aria-hidden="true"></span><span class="glyphicon glyphicon-remove action-icon" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-align-justify action-icon" aria-hidden="true"></span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col-xs-7">
+							<label for="last-name">Last Name:</label>
+							<input id="last-name" type="text" class="form-control" placeholder="Last Name">
+						</div>
+						<div class="form-group col-xs-5 text-center valign">
+							<span class="glyphicon glyphicon-pencil action-icon" aria-hidden="true"></span><span class="glyphicon glyphicon-plus action-icon" aria-hidden="true"></span><span class="glyphicon glyphicon-remove action-icon" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-align-justify action-icon" aria-hidden="true"></span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col-xs-7">
+							<label for="dob">Date of Birth:</label>
+							<input id="dob" type="date" class="form-control" placeholder="Date of Birth">
+						</div>
+						<div class="form-group col-xs-5 text-center valign">
+							<span class="glyphicon glyphicon-pencil action-icon" aria-hidden="true"></span><span class="glyphicon glyphicon-plus action-icon" aria-hidden="true"></span><span class="glyphicon glyphicon-remove action-icon" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-align-justify action-icon" aria-hidden="true"></span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col-xs-7">
+							<label for="gender">Gender:</label>
+							<select id="gender" name="gender" class="form-control">
+								<option value="male">Male</option>
+								<option value="female">Female</option>
+							</select> 
+						</div>
+						<div class="form-group col-xs-5 text-center valign">
+							<span class="glyphicon glyphicon-pencil action-icon" aria-hidden="true"></span><span class="glyphicon glyphicon-plus action-icon" aria-hidden="true"></span><span class="glyphicon glyphicon-remove action-icon" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-align-justify action-icon" aria-hidden="true"></span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col-xs-7">
+							<label>Roles:</label>
+							<div class="checkbox">
+								<label><input type="checkbox" value="admin">Admin</label>
+							</div>
+							<div class="checkbox">
+								<label><input type="checkbox" value="student">Student</label>
+							</div>
+							<div class="checkbox">
+								<label><input type="checkbox" value="user">User</label>
+							</div>
+						</div>
+						<div class="form-group col-xs-5 text-center valign">
+							<span class="glyphicon glyphicon-pencil action-icon" aria-hidden="true"></span><span class="glyphicon glyphicon-plus action-icon" aria-hidden="true"></span><span class="glyphicon glyphicon-remove action-icon" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-align-justify action-icon" aria-hidden="true"></span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col-xs-7">
+							<label>License Agreement:</label>
+							<div class="radio">
+								<label><input type="radio" value="yes" name="license" checked>Yes</label>
+							</div>
+							<div class="radio">
+								<label><input type="radio" value="no" name="license">No</label>
+							</div>
+						</div>
+						<div class="form-group col-xs-5 text-center valign">
+							<span class="glyphicon glyphicon-pencil action-icon" aria-hidden="true"></span><span class="glyphicon glyphicon-plus action-icon" aria-hidden="true"></span><span class="glyphicon glyphicon-remove action-icon" aria-hidden="true"></span>
+							<span class="glyphicon glyphicon-align-justify action-icon" aria-hidden="true"></span>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-xs-12"><hr></div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col-xs-7">
+							<label for="add-new-field">Add New Field:</label>
+							<select id="add-new-field" name="add-new" class="form-control">
+								<option value="single-line-text">Single Line Text</option>
+								<option value="date">Date</option>
+								<option value="dropdown">Dropdown</option>
+								<option value="checkboxes">Checkboxes</option>
+								<option value="radio-buttons">Radio Buttons</option>
+								<option value="paragraph-text-field">Paragraph Text Field</option>
+							</select> 
+						</div>
+						<div class="form-group col-xs-5 text-center valign">
+							<span class="glyphicon glyphicon-plus action-icon" aria-hidden="true"></span>
+						</div>						
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
