@@ -6,7 +6,10 @@
             // TODO: update these!!
             $routeProvider
                 .when("/", {
-                    templateUrl: "home.html"
+                    templateUrl: "home.view.html"
+                })
+                .when("/home", {
+                    templateUrl: "home.view.html"
                 })
                 .when("/profile", {
                     templateUrl: "profile.html"
