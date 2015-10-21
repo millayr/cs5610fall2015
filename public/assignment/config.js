@@ -17,6 +17,12 @@
                 .when("/forms", {
                     templateUrl: "form.view.html"
                 })
+                .when("/register", {
+                    templateUrl: "register.view.html"
+                })
+                .when("/login", {
+                    templateUrl: "login.view.html"
+                })
                 .otherwise({
                     redirectTo: "/home"
                 });
