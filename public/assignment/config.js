@@ -5,20 +5,20 @@
         .config(function($routeProvider){
             // TODO: update these!!
             $routeProvider
-                .when("/", {
-                    templateUrl: "home.view.html"
-                })
                 .when("/home", {
                     templateUrl: "home.view.html"
                 })
                 .when("/profile", {
-                    templateUrl: "profile.html"
+                    templateUrl: "profile.view.html"
                 })
                 .when("/admin", {
-                    templateUrl: "admin.html"
+                    templateUrl: "admin.view.html"
+                })
+                .when("/forms", {
+                    templateUrl: "form.view.html"
                 })
                 .otherwise({
-                    redirectTo: "/"
+                    redirectTo: "/home"
                 });
         });
 })();

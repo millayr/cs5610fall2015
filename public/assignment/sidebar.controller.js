@@ -4,6 +4,6 @@
         .controller("SidebarController", SidebarController);
 
     function SidebarController($scope, $location) {
-    	// TODO:  implement this!!
+    	$scope.$location = $location;
     }
 })();
