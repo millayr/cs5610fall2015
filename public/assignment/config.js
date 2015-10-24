@@ -3,25 +3,26 @@
     angular
         .module("FormBuilderApp")
         .config(function($routeProvider){
-            // TODO: update these!!
             $routeProvider
                 .when("/home", {
-                    templateUrl: "home.view.html"
+                    templateUrl: "./home/home.view.html"
                 })
                 .when("/profile", {
-                    templateUrl: "profile.view.html"
+                    templateUrl: "./profile/profile.view.html"
                 })
+                /*
                 .when("/admin", {
                     templateUrl: "admin.view.html"
                 })
+                */
                 .when("/forms", {
-                    templateUrl: "form.view.html"
+                    templateUrl: "./form/form.view.html"
                 })
                 .when("/register", {
-                    templateUrl: "register.view.html"
+                    templateUrl: "./register/register.view.html"
                 })
                 .when("/login", {
-                    templateUrl: "login.view.html"
+                    templateUrl: "./login/login.view.html"
                 })
                 .otherwise({
                     redirectTo: "/home"
