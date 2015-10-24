@@ -8,7 +8,8 @@
                     templateUrl: "./home/home.view.html"
                 })
                 .when("/profile", {
-                    templateUrl: "./profile/profile.view.html"
+                    templateUrl: "./profile/profile.view.html",
+                    controller: "ProfileController"
                 })
                 /*
                 .when("/admin", {
@@ -19,7 +20,8 @@
                     templateUrl: "./form/form.view.html"
                 })
                 .when("/register", {
-                    templateUrl: "./register/register.view.html"
+                    templateUrl: "./register/register.view.html",
+                    controller: "RegisterController"
                 })
                 .when("/login", {
                     templateUrl: "./login/login.view.html",

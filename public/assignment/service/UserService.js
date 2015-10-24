@@ -43,7 +43,7 @@
 		// Executes createUserCallback with the new user object.
 		function createUser(user, createUserCallback) {
 			// add "id" to new user with a fresh guid
-			user.id = Guid.create().value;
+			user.id = guid();
 
 			// add user to currentUsers array
 			currentUsers.push(user);
@@ -85,6 +85,18 @@
 					break;
 				}
 			}
+		}
+
+		// temporary guid function for this assignment
+		function guid() {
+			function s4() {
+				return Math
+						.floor((1 + Math.random()) * 0x10000)
+						.toString(16)
+						.substring(1);
+			}
+			return s4() + s4() + '-' + s4() + '-' + s4() + '-' 
+				+ s4() + '-' + s4() + s4() + s4();
 		}
 	}
 })();

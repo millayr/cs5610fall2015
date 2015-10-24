@@ -18,7 +18,7 @@
 		// form object.  Appends form to forms array and exectes callback.
 		function createFormForUser(userid, form, createFormForUserCallback) {
 			// add "id" to new form with a fresh guid
-			form.id = Guid.create().value;
+			form.id = guid();
 
 			// add userid to the form object
 			form.userid = userid;
@@ -78,6 +78,18 @@
 					break;
 				}
 			}
+		}
+
+		// temporary guid function for this assignment
+		function guid() {
+			function s4() {
+				return Math
+						.floor((1 + Math.random()) * 0x10000)
+						.toString(16)
+						.substring(1);
+			}
+			return s4() + s4() + '-' + s4() + '-' + s4() + '-' 
+				+ s4() + '-' + s4() + s4() + s4();
 		}
 	}
 })();
