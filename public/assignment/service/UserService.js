@@ -21,7 +21,7 @@
 			var matchedUser = null;
 
 			// iterate over current users and look for a match
-			for(var i = 0, i < currentUsers.length; i++) {
+			for(var i = 0; i < currentUsers.length; i++) {
 				if(currentUsers[i].username === username 
 					&& currentUsers[i].password === password) {
 					// user found!
