@@ -16,17 +16,22 @@
 		return service;
 
 		// Accepts username and password strings.  Attempts to match to user in existing
-		// currentUsers array.  If found, executes userFoundCallback.  Else return null.
+		// currentUsers array.  If found, executes userFoundCallback.
 		function findUserByUsernameAndPassword(username, password, userFoundCallback) {
+			var matchedUser = null;
+
 			// iterate over current users and look for a match
 			for(var i = 0, i < currentUsers.length; i++) {
 				if(currentUsers[i].username === username 
 					&& currentUsers[i].password === password) {
-					// user found!  Time to execute the callback function
-					userFoundCallback(currentUser[i]);
+					// user found!
+					matchedUser = currentUsers[i];
+					break;
 				}
-				return null;
 			}
+
+			// Time to execute the callback function
+			userFoundCallback(matchedUser);
 		}
 
 		// Simply executes allUsersCallback with the array or current users
@@ -55,9 +60,11 @@
 				if(currentUsers[i].id === id) {
 					// user found! remove it from the array
 					currentUsers.splice(i, 1);
+
+					// time to execute the callback
+					deleteUserCallback(currentUsers);
+					break;
 				}
-				// time to execute the callback
-				deleteUserCallback(currentUsers);
 			}
 		}
 
@@ -75,6 +82,7 @@
 					}
 					// time to execute the callback
 					updateUserCallback(currentUsers[i]);
+					break;
 				}
 			}
 		}
