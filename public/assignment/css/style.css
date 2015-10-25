@@ -47,17 +47,14 @@ span.sort-icon {
 	padding-right: 10px;
 }
 
-span.action-icon {
-	padding-left: 5px;
-	padding-right: 5px;
-	vertical-align: middle;
+.action-icon {
+	padding: 10px;
 }
 
 #form-fields {
 	padding-top: 20px;
 }
 
-.valign {
-	margin-top: 30px;
+td.form-list {
+	vertical-align: middle !important;
 }
-

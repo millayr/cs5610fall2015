@@ -17,7 +17,8 @@
                 })
                 */
                 .when("/forms", {
-                    templateUrl: "./form/form.view.html"
+                    templateUrl: "./form/form.view.html",
+                    controller: "FormController"
                 })
                 .when("/register", {
                     templateUrl: "./register/register.view.html",

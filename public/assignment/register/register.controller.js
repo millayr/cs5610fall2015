@@ -10,7 +10,7 @@
     		UserService.createUser(newUser, function(createdUser) {
     			// update root scope and navigate to profile
 				$rootScope.user = createdUser;
-                $location.url("/profile");
+                $location.path("/profile");
     		});
     	}
     }

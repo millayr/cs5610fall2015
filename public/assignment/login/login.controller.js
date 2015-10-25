@@ -11,7 +11,7 @@
     			// update root scope and navigate to profile if user exists
 				if(loggedInUser != null) {
 					$rootScope.user = loggedInUser;
-					$location.url("/profile");
+					$location.path("/profile");
 				} else {
 					alert("Username or password does not match a valid account!");
 				}
