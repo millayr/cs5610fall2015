@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -11,11 +11,31 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/register">Sign Up</a></li>
+                <li><a href="#/signup">Sign Up</a></li>
                 <li><a href="#/login">Login</a></li>
                 <li><a href="#/">Username</a></li>
                 <li><a href="#/">Shopping Cart</a></li>
             </ul>
+        </div>
+        <div id="search-div" class="row search">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-xs-5 col-sm-6">
+                        <input id="search" type="text" class="form-control" placeholder="Search">
+                    </div>
+                    <div class="col-xs-4 col-sm-3">
+                        <select id="search-options" name="Options" class="form-control">
+                            <option value="default">-- Options --</option>
+                            <option value="beer">Beer</option>
+                            <option value="brewery">Brewery</option>
+                            <option value="location">Location</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-3">
+                        <button type="button" class="btn btn-info">Search</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </nav>

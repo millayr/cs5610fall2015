@@ -43,18 +43,8 @@ h1 {
   background-color: #848484;
 }
 
-span.sort-icon {
-	padding-right: 10px;
-}
-
-.action-icon {
-	padding: 10px;
-}
-
-#form-fields {
-	padding-top: 20px;
-}
-
-td.form-list {
-	vertical-align: middle !important;
+div.search {
+	padding-top: 10px;
+	padding-left: 10px;
+	border-top-style: solid;
 }
