@@ -12,6 +12,9 @@
                 .when("/signup", {
                     templateUrl: "./signup/signup.view.html"
                 })
+                .when("/login", {
+                    templateUrl: "./login/login.view.html"
+                })
                 .otherwise({
                     redirectTo: "/home"
                 });
