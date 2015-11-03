@@ -18,6 +18,9 @@
                 .when("/profile", {
                     templateUrl: "./profile/profile.view.html"
                 })
+                .when("/search-results", {
+                    templateUrl: "./search/search-results.view.html"
+                })
                 .otherwise({
                     redirectTo: "/home"
                 });
