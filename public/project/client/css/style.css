@@ -1,5 +1,5 @@
 body { 
-	padding-top: 50px; 
+	padding-top: 50px;
 }
 
 h1 {
@@ -9,9 +9,12 @@ h1 {
 .search {
 	padding-top: 15px;
 	padding-left: 10px;
-	border-top-style: solid;
-	border-top-color: white;
+	border-top: solid white;
 	background-color: #b0a18e;
+}
+
+.result-row {
+	padding-bottom: 30px;
 }
 
 .result-tile > div > img {
