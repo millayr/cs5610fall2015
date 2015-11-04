@@ -57,7 +57,21 @@ h1 {
 }
 
 .sidebar {
-	display: none;
+	background-color: #EEEBE7;
+	padding: 20px;
+}
+.sidebar > div > img {
+	max-height: 175px;
+	max-width: 175px;
+	min-height: 50px;
+	min-width: 50px;
+}
+.sidebar > div {
+	width: 100%;
+	padding-top: 10px;
+}
+.sidebar > form {
+	padding-top: 20px;
 }
 @media (min-width: 768px) {
 	.sidebar {
@@ -72,19 +86,7 @@ h1 {
 		border-right: 3px solid #eee;
 	}
 }
-.sidebar > div {
-	width: 100%;
-	padding-top: 10px;
-}
-.sidebar > div > img {
-	max-height: 175px;
-	max-width: 175px;
-	min-height: 50px;
-	min-width: 50px;
-}
-.sidebar > form {
-	padding-top: 20px;
-}
+
 
 #beer-info-title {
 	padding-bottom: 0;
