@@ -7,6 +7,11 @@ h1 {
 	padding-bottom: 20px;
 }
 
+tfoot > tr {
+	background-color: #EEEBE7;
+	border-top: black 2px solid;
+}
+
 .content {
 	padding-top: 68px;
 }
