@@ -14,7 +14,7 @@ h1 {
 #search-div {
 	padding-top: 15px;
 	padding-bottom: 15px;
-	border-top: solid white;
+	border-top: solid #eee;
 	border-bottom: solid black 1px;
 	background-color: #b0a18e;
 	position: fixed;
@@ -31,7 +31,7 @@ h1 {
 	border-bottom: solid black 1px;
 }
 #search-result-header > div > h1 {
-	padding: 0px;
+	padding: 0;
 }
 #search-result-header > div > label {
 	margin-top: 20px;
@@ -69,7 +69,7 @@ h1 {
 		padding: 20px;
 		display: block;
 		background-color: #EEEBE7;
-		border-right: 1px solid #eee;
+		border-right: 3px solid #eee;
 	}
 }
 .sidebar > div {
@@ -87,7 +87,15 @@ h1 {
 }
 
 #beer-info-title {
-	padding-bottom: 0px;
+	padding-bottom: 0;
+}
+
+#brewery-link-title {
+	padding-bottom: 15px;
+}
+
+.rating {
+	padding-left: 0;
 }
 
 .green {
