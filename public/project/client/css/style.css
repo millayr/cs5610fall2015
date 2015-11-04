@@ -141,3 +141,23 @@ tfoot > tr {
 	padding-top: 30px;
 	padding-bottom: 10px;
 }
+
+#username-btn {
+	background: none;
+	border: none;
+	outline: none;
+	margin: 0;
+	padding-left: 15px;
+	padding-right: 15px;
+	height: 50px;
+	vertical-align: middle;
+}
+
+#link-menu > li > a,
+#link-menu > li > button {
+	color: white;
+}
+
+.popover-link {
+	white-space: nowrap;
+}
