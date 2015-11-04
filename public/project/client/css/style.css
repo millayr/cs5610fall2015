@@ -85,8 +85,10 @@ h1 {
 		background-color: #EEEBE7;
 		border-right: 3px solid #eee;
 	}
+	.sidebar > form {
+		padding-top: 30px;
+	}
 }
-
 
 #beer-info-title {
 	padding-bottom: 0;
@@ -106,4 +108,22 @@ h1 {
 
 .red {
 	color: red;
+}
+
+#beer-comment-form > div,
+#beer-comment-form > div > div {
+	padding-left: 0;
+}
+
+#beer-comment-submit {
+	margin-top: 10px;
+}
+
+#user-comments {
+	padding-top: 50px;
+}
+
+.comment {
+	padding-bottom: 30px;
+	border-top: solid 2px #eeeeee;
 }
