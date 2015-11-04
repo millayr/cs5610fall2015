@@ -136,3 +136,8 @@ tfoot > tr {
 #brewery-beers-link {
 	margin-top: 20px;
 }
+
+.checkout-title {
+	padding-top: 30px;
+	padding-bottom: 10px;
+}

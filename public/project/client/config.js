@@ -30,6 +30,9 @@
                 .when("/cart", {
                     templateUrl: "./cart/cart.view.html"
                 })
+                .when("/checkout", {
+                    templateUrl: "./checkout/checkout.view.html"
+                })
                 .otherwise({
                     redirectTo: "/home"
                 });
