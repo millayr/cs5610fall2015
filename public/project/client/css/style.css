@@ -44,7 +44,12 @@ tfoot > tr {
 }
 
 #search-result-content {
-	padding-top: 119px;
+	padding-top: 174px;
+}
+@media (min-width: 768px) {
+	#search-result-content {
+		padding-top: 119px;
+	}
 }
 
 .result-row {
