@@ -166,3 +166,18 @@ tfoot > tr {
 .popover-link {
 	white-space: nowrap;
 }
+
+#brew-house-title {
+	color: white;
+}
+
+#legal {
+	padding-top: 40px;
+}
+
+#brewerydb {
+	max-height: 250px;
+	max-width: 250px;
+	min-height: 50px;
+	min-width: 50px;
+}
