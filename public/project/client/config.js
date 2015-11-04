@@ -21,6 +21,9 @@
                 .when("/search-results", {
                     templateUrl: "./search/search-results.view.html"
                 })
+                .when("/beer-info", {
+                    templateUrl: "./info/beer-info.view.html"
+                })
                 .otherwise({
                     redirectTo: "/home"
                 });

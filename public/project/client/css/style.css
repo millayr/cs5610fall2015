@@ -11,7 +11,7 @@ h1 {
 	padding-top: 68px;
 }
 
-.search {
+#search-div {
 	padding-top: 15px;
 	padding-bottom: 15px;
 	border-top: solid white;
@@ -22,7 +22,7 @@ h1 {
 	z-index: 1000;
 }
 
-.search-result-header {
+#search-result-header {
 	padding-top: 20px;
 	position: fixed;
 	width: 100%;
@@ -30,15 +30,15 @@ h1 {
 	background-color: white;
 	border-bottom: solid black 1px;
 }
-.search-result-header > div > h1 {
+#search-result-header > div > h1 {
 	padding: 0px;
 }
-.search-result-header > div > label {
+#search-result-header > div > label {
 	margin-top: 20px;
 	height: 34px;
 }
 
-.search-result-content {
+#search-result-content {
 	padding-top: 119px;
 }
 
@@ -48,12 +48,46 @@ h1 {
 
 .result-tile > div > img {
 	max-height: 150px;
-	max-wdith: 150px;
+	max-width: 150px;
 	min-height: 50px;
 	min-width: 50px;
 }
 .result-tile > label {
 	padding-top: 10px;
+}
+
+.sidebar {
+	display: none;
+}
+@media (min-width: 768px) {
+	.sidebar {
+		position: fixed;
+		top: 119px;
+		bottom: 0;
+		left: 0;
+		z-index: 1000;
+		padding: 20px;
+		display: block;
+		background-color: #EEEBE7;
+		border-right: 1px solid #eee;
+	}
+}
+.sidebar > div {
+	width: 100%;
+	padding-top: 10px;
+}
+.sidebar > div > img {
+	max-height: 175px;
+	max-width: 175px;
+	min-height: 50px;
+	min-width: 50px;
+}
+.sidebar > form {
+	padding-top: 20px;
+}
+
+#beer-info-title {
+	padding-bottom: 0px;
 }
 
 .green {
