@@ -33,6 +33,9 @@
                 .when("/checkout", {
                     templateUrl: "./checkout/checkout.view.html"
                 })
+                .when("/dashboard", {
+                    templateUrl: "./dashboard/dashboard.view.html"
+                })
                 .otherwise({
                     redirectTo: "/home"
                 });
