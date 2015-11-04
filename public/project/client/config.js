@@ -22,10 +22,10 @@
                     templateUrl: "./search/search-results.view.html"
                 })
                 .when("/beer-info", {
-                    templateUrl: "./info/beer-info.view.html"
+                    templateUrl: "./beer/beer-info.view.html"
                 })
                 .when("/brewery-info", {
-                    templateUrl: "./info/brewery-info.view.html"
+                    templateUrl: "./brewery/brewery-info.view.html"
                 })
                 .when("/cart", {
                     templateUrl: "./cart/cart.view.html"
