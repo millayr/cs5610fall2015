@@ -1,10 +1,11 @@
 <div id="search-div" class="search row">
     <form class="form-horizontal">
         <div class="col-xs-5 col-sm-6">
-            <input id="search" type="text" class="form-control" placeholder="Search Our Inventory!">
+            <input ng-model="query.text" id="search" type="text"
+                   class="form-control" placeholder="Search Our Inventory!">
         </div>
         <div class="col-xs-4 col-sm-3">
-            <select id="search-options" name="Options" class="form-control">
+            <select id="search-options" name="options" class="form-control">
                 <option value="default">-- Options --</option>
                 <option value="beer">Beer</option>
                 <option value="brewery">Brewery</option>
@@ -12,7 +13,7 @@
             </select>
         </div>
         <div class="col-xs-3">
-            <button type="button" class="btn btn-info">Search</button>
+            <button ng-click="search(query)" type="button" class="btn btn-info">Search</button>
         </div>
     </form>
 </div>

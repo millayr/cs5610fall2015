@@ -9,14 +9,15 @@
     <link href="./css/style.css" rel="stylesheet"/>
     <script src="app.js"></script>
     <script src="config.js"></script>
+    <script src="./search/search.controller.js"></script>
 
     <title>Brew House</title>
 </head>
 <body>
     <div ng-include="'./header/header.view.html'"></div>
     <div class="container-fluid">
-        <div ng-include="'./search/search.view.html'"></div>
-        <div ng-view></div>
+        <div ng-controller="SearchController" ng-include="'./search/search.view.html'"></div>
+        <div class="content" ng-view></div>
     </div>
 </body>
 </html>

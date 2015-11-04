@@ -7,17 +7,28 @@ h1 {
 	padding-bottom: 20px;
 }
 
+.content {
+	padding-top: 68px;
+}
+
 .search {
 	padding-top: 15px;
 	padding-bottom: 15px;
 	border-top: solid white;
 	border-bottom: solid black 1px;
 	background-color: #b0a18e;
+	position: fixed;
+	width: 100%;
+	z-index: 1000;
 }
 
 .search-result-header {
 	padding-top: 20px;
-	padding-bottom: 20px;
+	position: fixed;
+	width: 100%;
+	z-index: 1000;
+	background-color: white;
+	border-bottom: solid black 1px;
 }
 .search-result-header > div > h1 {
 	padding: 0px;
@@ -25,6 +36,10 @@ h1 {
 .search-result-header > div > label {
 	margin-top: 20px;
 	height: 34px;
+}
+
+.search-result-content {
+	padding-top: 119px;
 }
 
 .result-row {
