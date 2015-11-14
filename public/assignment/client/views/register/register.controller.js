@@ -9,11 +9,12 @@
 
     	$scope.register = function(newUser) {
     		// create the user via the UserService
-    		UserService.createUser(newUser, function(createdUser) {
-    			// update root scope and navigate to profile
-				$rootScope.user = createdUser;
-                $location.path("/profile");
-    		});
+    		UserService.createUser(newUser)
+                .then(function(createdUser) {
+                    // update root scope and navigate to profile
+                    $rootScope.user = createdUser;
+                    $location.path("/profile");
+    		    });
     	}
     }
 })();
