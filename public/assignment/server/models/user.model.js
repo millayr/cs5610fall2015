@@ -17,6 +17,7 @@ module.exports = function(app, db) {
     // accepts a new user object to create.
     // TODO:  update for use with a Mongo backend
     function create(newUser) {
+        newUser.id = guid();
         users.push(newUser);
         return users;
     }
@@ -93,5 +94,17 @@ module.exports = function(app, db) {
             }
         }
         return null;
+    }
+
+    // temporary guid function for this assignment
+    function guid() {
+        function s4() {
+            return Math
+                .floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+                .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-'
+            + s4() + '-' + s4() + s4() + s4();
     }
 };

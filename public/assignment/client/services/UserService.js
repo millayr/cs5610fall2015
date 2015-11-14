@@ -5,8 +5,7 @@
 		.module("FormBuilderApp")
 		.factory("UserService", UserService);
 
-	function UserService() {
-		var currentUsers = [];
+	function UserService($http, $q) {
 
 		var service = {
 			findUserByUsernameAndPassword: findUserByUsernameAndPassword,
@@ -17,88 +16,59 @@
 		};
 		return service;
 
-		// Accepts username and password strings.  Attempts to match to user in existing
-		// currentUsers array.  If found, executes userFoundCallback.
-		function findUserByUsernameAndPassword(username, password, userFoundCallback) {
-			var matchedUser = null;
-
-			// iterate over current users and look for a match
-			for(var i = 0; i < currentUsers.length; i++) {
-				if(currentUsers[i].username === username 
-					&& currentUsers[i].password === password) {
-					// user found!
-					matchedUser = currentUsers[i];
-					break;
-				}
-			}
-
-			// Time to execute the callback function
-			userFoundCallback(matchedUser);
+		// Accepts username and password strings.  Calls user service on server
+		// for matching user docs that have the correct creds.  Returns a promise.
+		function findUserByUsernameAndPassword(username, password) {
+			var deferred = $q.defer();
+			$http.get("/api/assignment/user?username=" + username + "&password=" + password)
+				.success(function(response) {
+					deferred.resolve(response);
+				});
+			return deferred.promise;
 		}
 
-		// Simply executes allUsersCallback with the array or current users
-		function findAllUsers(allUsersCallback) {
-			allUsersCallback(currentUsers);
+		// Calls user service on server requesting all users.  Returns a promise.
+		function findAllUsers() {
+			var deferred = $q.defer();
+			$http.get("/api/assignment/user")
+				.success(function(response) {
+					deferred.resolve(response);
+				});
+			return deferred.promise;
 		}
 
-		// Accepts new user object.  Adds id guid and appends to currentUsers array.
-		// Executes createUserCallback with the new user object.
-		function createUser(user, createUserCallback) {
-			// add "id" to new user with a fresh guid
-			user.id = guid();
-
-			// add user to currentUsers array
-			currentUsers.push(user);
-
-			// time to execute the callback
-			createUserCallback(user);
+		// Accepts new user object.  Calls user service on server requesting it
+		// create the new user.  Returns a promise.
+		function createUser(user) {
+			var deferred = $q.defer();
+			$http.post("/api/assignment/user", user)
+				.success(function(response) {
+					deferred.resolve(response);
+				});
+			return deferred.promise;
 		}
 
-		// Accepts id of user.  Matches to user in currentUsers array.  If found,
-		// user is removed.  Executes deleteUserCallback with currentUsers array.
-		function deleteUserById(id, deleteUserCallback) {
-			// iterate over currentUsers array and look for a match
-			for(var i = 0; i < currentUsers.length; i ++) {
-				if(currentUsers[i].id === id) {
-					// user found! remove it from the array
-					currentUsers.splice(i, 1);
-
-					// time to execute the callback
-					deleteUserCallback(currentUsers);
-					break;
-				}
-			}
+		// Accepts id of user.  Calls user service on server requesting that it
+		// delete the corresponding user doc.  Returns a promise.
+		function deleteUserById(id) {
+			var deferred = $q.defer();
+			$http.delete("/api/assignment/user/" + id)
+				.success(function(response) {
+					deferred.resolve(response);
+				});
+			return deferred.promise;
 		}
 
 		// Accepts id of user and a user object with new properties.  If user is
 		// is found, the user object is updated with the new properties.  Executes
 		// updateUserCallback with the updated user.
-		function updateUser(id, updatedUser, updateUserCallback) {
-			// iterate over currentUsers array and look for a match
-			for(var i = 0; i < currentUsers.length; i++) {
-				if(currentUsers[i].id === id) {
-					// user found!  time to update the user properties
-					for(var attr in updatedUser) {
-						if(updatedUser.hasOwnProperty(attr))
-							currentUsers[i][attr] = updatedUser[attr];
-					}
-					// time to execute the callback
-					updateUserCallback(currentUsers[i]);
-					break;
-				}
-			}
-		}
-
-		// temporary guid function for this assignment
-		function guid() {
-			function s4() {
-				return Math
-						.floor((1 + Math.random()) * 0x10000)
-						.toString(16)
-						.substring(1);
-			}
-			return s4() + s4() + '-' + s4() + '-' + s4() + '-' 
-				+ s4() + '-' + s4() + s4() + s4();
+		function updateUser(id, updatedUser) {
+			var deferred = $q.defer();
+			$http.put("/api/assignment/user/" + id, updatedUser)
+				.success(function(response) {
+					deferred.resolve(response);
+				});
+			return deferred.promise;
 		}
 	}
 })();
