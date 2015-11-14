@@ -22,9 +22,10 @@
 
     	$scope.update = function(updatedUser) {
     		// create the user via the UserService
-    		UserService.updateUser(user.id, updatedUser, function(mergedUser) {
-                alert("Update successful!");
-            });
+    		UserService.updateUser(user.id, updatedUser)
+                .then(function(mergedUser) {
+                    alert("Update successful!");
+                });
     	}
     }
 })();

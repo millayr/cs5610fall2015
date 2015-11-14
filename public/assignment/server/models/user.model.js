@@ -19,7 +19,7 @@ module.exports = function(app, db) {
     function create(newUser) {
         newUser.id = guid();
         users.push(newUser);
-        return users;
+        return newUser;
     }
 
     // returns all users
