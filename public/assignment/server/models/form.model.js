@@ -9,7 +9,8 @@ module.exports = function(app, db) {
         findById: findById,
         update: update,
         remove: remove,
-        findFormByTitle: findFormByTitle
+        findFormByTitle: findFormByTitle,
+        findFormsByUserId: findFormsByUserId
     };
     return api;
 
@@ -75,5 +76,19 @@ module.exports = function(app, db) {
             }
         }
         return null;
+    }
+
+    function findFormsByUserId(userid) {
+        var userForms = [];
+
+        // iterate over forms and look for matches.
+        // TODO: I imagine this will be replace by a single lookup to Mongo
+        for(var i = 0; i < forms.length; i++) {
+            if(forms[i].userid === userid) {
+                // form found!  add it to the array
+                userForms.push(forms[i]);
+            }
+        }
+        return userForms;
     }
 };

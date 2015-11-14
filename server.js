@@ -114,7 +114,7 @@ var SampleApp = function() {
      */
     self.initializeServer = function() {
         self.createRoutes();
-        self.app = express.createServer();
+        self.app = express();
 
         //  Add handlers for the app (from the routes).
         for (var r in self.routes) {
@@ -146,9 +146,6 @@ var SampleApp = function() {
 
         // time to pull in the server modules
         require("./public/assignment/server/app.js")(self.app);
-        var userModel = require("./public/assignment/server/models/user.model.js")(self.app);
-        var formModel = require("./public/assignment/server/models/form.model.js")(self.app);
-        require("./public/assignment/server/services/user.service.js")(self.app, userModel);
 
         //  Start the app on the specific interface (and port).
         self.app.listen(self.port, self.ipaddress, function() {
