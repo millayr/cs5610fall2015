@@ -28,26 +28,11 @@ module.exports = function(app, formModel, db) {
         // add the username to the form object
         newForm.userid = req.params.userid;
 
-        // TODO: remove this as the id will be determined by Mongo
-        newForm.id = guid();
-
         res.json(formModel.create(newForm));
     }
 
     function updateFormById(req, res) {
         // ask the model to update the matching form
         formModel.update(req.params.formid, req.body);
-    }
-
-    // temporary guid function for this assignment
-    function guid() {
-        function s4() {
-            return Math
-                .floor((1 + Math.random()) * 0x10000)
-                .toString(16)
-                .substring(1);
-        }
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-'
-            + s4() + '-' + s4() + s4() + s4();
     }
 };

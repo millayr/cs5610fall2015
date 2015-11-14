@@ -2,7 +2,7 @@
   {
     "id": "000",
     "title": "Contacts",
-    "userId": 123,
+    "userid": 123,
     "fields": [
       {
         "id": "111",
@@ -55,7 +55,7 @@
   {
     "id": "010",
     "title": "ToDo",
-    "userId": 234,
+    "userid": 234,
     "fields": [
       {
         "id": "777",

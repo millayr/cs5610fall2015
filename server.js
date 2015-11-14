@@ -2,7 +2,6 @@
 //  OpenShift sample Node application
 var express = require('express');
 var fs      = require('fs');
-var bodyParser = require('body-parser');
 
 
 /**
@@ -141,8 +140,6 @@ var SampleApp = function() {
      */
     self.start = function() {
         self.app.use(express.static(__dirname + '/public'));
-        self.app.use(bodyParser.json());
-        self.app.use(bodyParser.urlencoded({ extended: true }));
 
         // time to pull in the server modules
         require("./public/assignment/server/app.js")(self.app);
