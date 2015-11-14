@@ -5,9 +5,7 @@
 		.module("FormBuilderApp")
 		.factory("FormService", FormService);
 
-	function FormService() {
-		var forms = [];
-
+	function FormService($http, $q) {
 		var service = {
 			createFormForUser: createFormForUser,
 			findAllFormsForUser: findAllFormsForUser,
@@ -16,82 +14,49 @@
 		};
 		return service;
 
-		// Accepts id of user and new form object.  Adds id guid and userid to
-		// form object.  Appends form to forms array and exectes callback.
-		function createFormForUser(userid, form, createFormForUserCallback) {
-			// add "id" to new form with a fresh guid
-			form.id = guid();
-
-			// add userid to the form object
-			form.userid = userid;
-
-			// append to forms array
-			forms.push(form);
-
-			// time to execute the callback
-			createFormForUserCallback(form);
+		// Accepts id of user and new form object.  Calls form service on
+		// server to create the form.  Returns a promise.
+		function createFormForUser(userid, form) {
+			var deferred = $q.defer();
+			$http.post("/api/assignment/user/" + userid + "/form", form)
+				.success(function(response) {
+					deferred.resolve(response);
+				});
+			return deferred.promise;
 		}
 
-		// Accepts id of user.  Iterates over forms array for all matching
-		// forms.  Executes callback with the resulting forms.
-		function findAllFormsForUser(userid, findAllFormsForUserCallback) {
-			var matchingForms = [];
-
-			// iterate over forms array for matches
-			for(var i = 0; i < forms.length; i++) {
-				if(forms[i].userid === userid)
-					matchingForms.push(forms[i]);
-			}
-
-			// time to execute the callback
-			findAllFormsForUserCallback(matchingForms);
+		// Accepts id of user.  Calls form service on server for matching
+		// forms.  Returns a promise.
+		function findAllFormsForUser(userid) {
+			var deferred = $q.defer();
+			$http.get("/api/assignment/user/" + userid + "/form")
+				.success(function(response) {
+					deferred.resolve(response);
+				});
+			return deferred.promise;
 		}
 
-		// Accepts form id.  Iterates over forms array for matches.  If found,
-		// form is removed.  Executes callback with remaining forms.
-		function deleteFormById(id, deleteFormByIdCallback) {
-			// iterate over forms array looking for matches
-			for(var i = 0; i < forms.length; i++) {
-				if(forms[i].id === id) {
-					// form found!  time to remove it
-					forms.splice(i, 1);
-
-					// time to execute the callback
-					deleteFormByIdCallback(forms);
-					break;
-				}
-			}
+		// Accepts form id.  Calls form service on server to delete form
+		// with matching id.  Returns a promise.
+		function deleteFormById(id) {
+			var deferred = $q.defer();
+			$http.delete("/api/assignment/form/" + id)
+				.success(function(response) {
+					deferred.resolve(response);
+				});
+			return deferred.promise;
 		}
 
-		// Accepts id of form and updated form object.  Matches to form in forms 
-		// array.  If found, form is updated with new properties.  Executes 
-		// callback with updated form.
-		function updateFormById(id, updatedForm, updateFormByIdCallback) {
-			// iterate over forms array and look for a match
-			for(var i = 0; i < forms.length; i++) {
-				if(forms[i].id === id) {
-					// form found!  time to update the form properties
-					for(var attr in updatedForm) {
-						if(updatedForm.hasOwnProperty(attr))
-							forms[i][attr] = updatedForm[attr];
-					}
-					// time to execute the callback
-					updateFormByIdCallback(forms[i]);
-					break;
-				}
-			}
-		}
-
-		// temporary guid function for this assignment
-		function guid() {
-			function s4() {
-				return Math
-						.floor((1 + Math.random()) * 0x10000)
-						.toString(16)
-						.substring(1);
-			}
-			return s4() + s4() + '-' + s4() + '-' + s4() + '-' 
-				+ s4() + '-' + s4() + s4() + s4();
+		// Accepts id of form and updated form object.  Calls form service
+		// on server to locate matching form and update accordingly.  Returns
+		// a promise.
+		function updateFormById(id, updatedForm) {
+			var deferred = $q.defer();
+			$http.put("/api/assignment/form/" + id, updatedForm)
+				.success(function(response) {
+					deferred.resolve(response);
+				});
+			return deferred.promise;
 		}
 	}
 })();
