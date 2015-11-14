@@ -6,7 +6,9 @@ module.exports = function(app, db) {
         findAll: findAll,
         findById: findById,
         update: update,
-        remove: remove
+        remove: remove,
+        findUserByUsername: findUserByUsername,
+        findUserByCredentials: findUserByCredentials
     };
     return api;
 
@@ -61,5 +63,33 @@ module.exports = function(app, db) {
                 users.splice(i, 1);
             }
         }
+    }
+
+    // accepts a username and returns matching user doc if found
+    function findUserByUsername(username) {
+        // iterate over users and look for a match.
+        // TODO: I imagine this will be replace by a single lookup to Mongo
+        for(var i = 0; i < users.length; i++) {
+            if(users[i].username === username) {
+                // user found!
+                return users[i];
+            }
+        }
+        return null;
+    }
+
+    // accepts a credentials object and returns the matching user
+    function findUserByCredentials(creds) {
+        var matchedUser = null;
+
+        // iterate over current users and look for a match
+        for(var i = 0; i < users.length; i++) {
+            if(users[i].username === creds.username
+                && users[i].password === creds.password) {
+                // user found!
+                return users[i];
+            }
+        }
+        return null;
     }
 };
