@@ -2,6 +2,7 @@
 //  OpenShift sample Node application
 var express = require('express');
 var fs      = require('fs');
+var bodyParser = require('body-parser');
 
 
 /**
@@ -140,7 +141,14 @@ var SampleApp = function() {
      */
     self.start = function() {
         self.app.use(express.static(__dirname + '/public'));
+        self.app.use(bodyParser.json());
+        self.app.use(bodyParser.urlencoded({ extended: true }));
+
+        // time to pull in the server modules
         require("./public/assignment/server/app.js")(self.app);
+        var userModel = require("./public/assignment/server/models/user.model.js")(self.app);
+        var formModel = require("./public/assignment/server/models/form.model.js")(self.app);
+        require("./public/assignment/server/services/user.service.js")(self.app, userModel);
 
         //  Start the app on the specific interface (and port).
         self.app.listen(self.port, self.ipaddress, function() {

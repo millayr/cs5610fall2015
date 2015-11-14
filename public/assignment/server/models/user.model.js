@@ -1,4 +1,4 @@
-var users = require("user.mock.json");
+var users = require("./user.mock.json");
 
 module.exports = function(app, db) {
     var api = {
@@ -29,7 +29,7 @@ module.exports = function(app, db) {
         // iterate over users and look for a match.
         // TODO: I imagine this will be replace by a single lookup to Mongo
         for(var i = 0; i < users.length; i++) {
-            if(users[i].id === id) {
+            if(users[i].id == id) {
                 // user found!
                 return users[i];
             }
@@ -43,7 +43,7 @@ module.exports = function(app, db) {
     function update(id, updatedUser) {
         // iterate over users array and look for a match
         for(var i = 0; i < users.length; i++) {
-            if(users[i].id === id) {
+            if(users[i].id == id) {
                 // user found!  time to update the user properties
                 for(var attr in updatedUser) {
                     if(updatedUser.hasOwnProperty(attr))
@@ -58,7 +58,7 @@ module.exports = function(app, db) {
     function remove(id) {
         // iterate over users and look for a match
         for(var i = 0; i < users.length; i++) {
-            if(users[i].id === id) {
+            if(users[i].id == id) {
                 // user found!
                 users.splice(i, 1);
             }
