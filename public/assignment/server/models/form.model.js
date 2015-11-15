@@ -5,10 +5,12 @@ var forms = require("./form.mock.json");
 module.exports = function(app, db) {
     var api = {
         create: create,
+        createFormForUser: createFormForUser,
         findAll: findAll,
         findById: findById,
         update: update,
         remove: remove,
+        removeForUser: removeForUser,
         findFormByTitle: findFormByTitle,
         findFormsByUserId: findFormsByUserId,
         retrieveFormFields: retrieveFormFields,
@@ -25,6 +27,15 @@ module.exports = function(app, db) {
         newForm.id = guid();
         forms.push(newForm);
         return forms;
+    }
+
+    // accepts a new form object to create and a user id.  Creates the form
+    // and returns a list of all the user's forms.
+    function createFormForUser(newForm, userid) {
+        newForm.id = guid();
+        newForm.userid = userid;
+        forms.push(newForm);
+        return findFormsByUserId(userid);
     }
 
     // return all forms
@@ -59,17 +70,35 @@ module.exports = function(app, db) {
                 break;
             }
         }
+        return forms;
     }
 
-    // accepts a form id and deletes the doc if it exists
+    // accepts a form id and deletes the doc if it exists.  Returns a list
+    // of all forms.
     function remove(id) {
         // iterate over forms and look for a match
         for(var i = 0; i < forms.length; i++) {
-            if(forms[i].id === id) {
+            if(forms[i].id == id) {
                 // form found!
                 forms.splice(i, 1);
+                break;
             }
         }
+        return forms;
+    }
+
+    // accepts a form id and userid.  Deletes the doc if it exists.  Returns a
+    // list of all forms owned by the userid.
+    function removeForUser(id, userid) {
+        // iterate over forms and look for a match
+        for(var i = 0; i < forms.length; i++) {
+            if(forms[i].id == id) {
+                // form found!
+                forms.splice(i, 1);
+                break;
+            }
+        }
+        return findFormsByUserId(userid);
     }
 
     function findFormByTitle(title) {

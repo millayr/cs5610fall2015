@@ -22,6 +22,9 @@
                     templateUrl: "./views/form/form.view.html",
                     controller: "FormController"
                 })
+                .when("/user", {
+                    templateUrl: "./views/field/field.view.html"
+                })
                 .when("/register", {
                     templateUrl: "./views/register/register.view.html",
                     controller: "RegisterController"

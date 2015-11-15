@@ -10,7 +10,8 @@
 			createFormForUser: createFormForUser,
 			findAllFormsForUser: findAllFormsForUser,
 			deleteFormById: deleteFormById,
-			updateFormById: updateFormById
+			updateFormById: updateFormById,
+			deleteFormByIdForUser: deleteFormByIdForUser
 		};
 		return service;
 
@@ -42,6 +43,18 @@
 			var deferred = $q.defer();
 			$http.delete("/api/assignment/form/" + id)
 				.success(function(response) {
+					deferred.resolve(response);
+				});
+			return deferred.promise;
+		}
+
+		// Accepts a form id and a userid.  Calls form service on server to
+		// delete the form with the matching id and requests a list of all
+		// forms owned by the userid.  Returns a promise.
+		function deleteFormByIdForUser(id, userid) {
+			var deferred = $q.defer();
+			$http.delete("/api/assignment/user/" + userid + "/form/" + id)
+				.then(function(response) {
 					deferred.resolve(response);
 				});
 			return deferred.promise;

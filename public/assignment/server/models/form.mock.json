@@ -14,8 +14,7 @@
         "id": "222",
         "label": "Last Name",
         "type": "TEXT",
-        "placeholder":
-        "Last Name"
+        "placeholder": "Last Name"
       },
       {
         "id": "333",

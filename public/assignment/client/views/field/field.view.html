@@ -1,0 +1,57 @@
+<h1 class="page-header">Forms</h1>
+
+<ul class="nav nav-tabs">
+    <li role="presentation">
+        <a href="#/forms">Forms</a>
+    </li>
+    <li role="presentation" ng-class="{'active' : $location.url().indexOf('user') != -1}">
+        <a href="#/user">Fields</a>
+    </li>
+</ul>
+
+<form id="form-fields">
+    <div ng-repeat="field in fields" class="row">
+        <div class="form-group col-xs-7">
+            <label for={{field.id}}>{{field.label}}:</label>
+            <div ng-switch=field.type>
+                <input ng-switch-when="single-line-text" id={{field.id}} type="text" class="form-control" placeholder={{field.placeholder}}>
+                <textarea ng-switch-when="multi-line-text" id={{field.id}} class="form-control" rows="5" placeholder={{field.placeholder}}></textarea>
+                <input ng-switch-when="date" id={{field.id}} type="date" class="form-control" placeholder={{field.placeholder}}>
+                <select ng-switch-when="dropdown" id={{field.id}} name={{field.id}} class="form-control">
+                    <option ng-repeat="choice in field.options" value={{choice.value}}>{{choice.label}}</option>
+                </select>
+                <div ng-switch-when="checkboxes" ng-repeat="choice in field.options" class="checkbox">
+                    <label><input type="checkbox" value={{choice.value}}>{{choice.label}}</label>
+                </div>
+                <div ng-switch-when="radio-buttons" ng-repeat="choice in field.options" class="radio">
+                    <label><input type="radio" value={{choice.value}} name="license">{{choice.label}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group col-xs-5 text-center valign">
+            <span class="glyphicon glyphicon-pencil action-icon" aria-hidden="true"></span><span class="glyphicon glyphicon-plus action-icon" aria-hidden="true"></span><span class="glyphicon glyphicon-remove action-icon" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-align-justify action-icon" aria-hidden="true"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12"><hr></div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-xs-7">
+            <label for="add-new-field">Add New Field:</label>
+            <select id="add-new-field" name="add-new" class="form-control" ng-model="newField.type">
+                <option value="single-line-text">Single Line Text</option>
+                <option value="multi-line-text">Multi Line Text Field</option>
+                <option value="date">Date Field</option>
+                <option value="dropdown">Dropdown Field</option>
+                <option value="checkboxes">Checkboxes Field</option>
+                <option value="radio-buttons">Radio Buttons Field</option>
+            </select>
+        </div>
+        <div class="form-group col-xs-5 text-center valign">
+            <button ng-click="addField(newField.type)" class="glyphicon glyphicon-plus action-icon"></button>
+        </div>
+    </div>
+</form>
