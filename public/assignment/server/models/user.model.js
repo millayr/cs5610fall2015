@@ -52,7 +52,7 @@ module.exports = function(app, db) {
                     if(updatedUser.hasOwnProperty(attr))
                         users[i][attr] = updatedUser[attr];
                 }
-                break;
+                return users[i];
             }
         }
     }

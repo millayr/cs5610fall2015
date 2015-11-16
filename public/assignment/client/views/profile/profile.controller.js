@@ -5,26 +5,31 @@
         .module("FormBuilderApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope, $rootScope, UserService) {
+    function ProfileController($rootScope, UserService) {
+        var model = this;
+        model.update = update;
+
         // get logged in user from the root scope
         var user = $rootScope.user;
 
         if(user != null) {
+            model.user = {};
             // set the form values based on this user
-            $scope.user.username = user.username;
-            $scope.user.password = user.password;
-            $scope.user.firstName = user.firstName;
-            $scope.user.lastName = user.lastName;
-            $scope.user.email = user.email;
+            model.user.username = user.username;
+            model.user.password = user.password;
+            model.user.firstName = user.firstName;
+            model.user.lastName = user.lastName;
+            model.user.email = user.email;
         } else {
             alert("You must register/login!");
         }
 
-    	$scope.update = function(updatedUser) {
+    	function update(updatedUser) {
     		// create the user via the UserService
     		UserService.updateUser(user.id, updatedUser)
                 .then(function(mergedUser) {
-                    alert("Update successful!");
+                    model.user = mergedUser;
+                    $rootScope.user = mergedUser;
                 });
     	}
     }

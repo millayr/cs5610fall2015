@@ -11,7 +11,8 @@
                 })
                 .when("/profile", {
                     templateUrl: "./views/profile/profile.view.html",
-                    controller: "ProfileController"
+                    controller: "ProfileController",
+                    controllerAs: "model"
                 })
                 /*
                 .when("/admin", {
