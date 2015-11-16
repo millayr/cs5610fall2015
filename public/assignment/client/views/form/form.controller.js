@@ -54,8 +54,7 @@
             var deletedId = $scope.forms[index].id;
             FormService.deleteFormByIdForUser(deletedId, user.id)
                 .then(function(remainingForms) {
-                    console.log(remainingForms);
-                    $scope.forms = remainingForms;
+                    $scope.forms = remainingForms.data;
                 });
         }
 
