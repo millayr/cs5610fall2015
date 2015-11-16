@@ -5,7 +5,11 @@
         .module("FormBuilderApp")
         .controller("FieldController", FieldController);
 
-    function FieldController($scope, $routeParams, FieldService) {
+    function FieldController($routeParams, FieldService) {
+        var model = this;
+        model.removeField = removeField;
+        model.addField = addField;
+
         var userid = $routeParams.userid;
         var formid = $routeParams.formid;
 
@@ -33,21 +37,21 @@
 
         FieldService.getFieldsForForm(formid)
             .then(function(allFields) {
-                $scope.fields = allFields;
+                model.fields = allFields;
             });
 
-        $scope.removeField = function(index) {
-            FieldService.deleteFieldFromForm(formid, $scope.fields[index].id)
+        function removeField(index) {
+            FieldService.deleteFieldFromForm(formid, model.fields[index].id)
                 .then(function(revisedForm) {
-                    $scope.fields = revisedForm.fields;
+                    model.fields = revisedForm.fields;
                 });
         }
 
-        $scope.addField = function(newFieldType) {
+        function addField(newFieldType) {
             var newField = defaultFieldValues[newFieldType];
             FieldService.createFieldForForm(formid, newField)
                 .then(function(revisedForm) {
-                    $scope.fields = revisedForm.fields;
+                    model.fields = revisedForm.fields;
                 });
         }
     }

@@ -26,11 +26,13 @@
                 })
                 .when("/user", {
                     templateUrl: "./views/field/field.view.html",
-                    controller: "FieldController"
+                    controller: "FieldController",
+                    controllerAs: "model"
                 })
                 .when("/user/:userid/form/:formid/fields", {
                     templateUrl: "./views/field/field.view.html",
-                    controller: "FieldController"
+                    controller: "FieldController",
+                    controllerAs: "model"
                 })
                 .when("/register", {
                     templateUrl: "./views/register/register.view.html",
