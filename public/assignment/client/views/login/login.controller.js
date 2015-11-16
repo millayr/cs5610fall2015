@@ -5,9 +5,11 @@
         .module("FormBuilderApp")
         .controller("LoginController", LoginController);
 
-    function LoginController($scope, $rootScope, $location, UserService) {
+    function LoginController($rootScope, $location, UserService) {
+		var model = this;
+		model.login = login;
 
-    	$scope.login = function(creds) {
+    	function login(creds) {
     		// look up the user via the UserService
     		UserService.findUserByUsernameAndPassword(creds.username, creds.password)
 				.then(function(loggedInUser){
