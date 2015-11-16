@@ -182,7 +182,7 @@ module.exports = function(app, db) {
         for(var i = 0; i < forms.length; i++) {
             if(forms[i].id == id) {
                 // form found!
-                form[i].fields.push(newField);
+                forms[i].fields.push(newField);
                 return forms[i];
             }
         }

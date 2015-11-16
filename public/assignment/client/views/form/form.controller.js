@@ -10,21 +10,23 @@
         var user = $rootScope.user;
 
         // iniitalize table of forms
+        $scope.selectedForm = {
+            title: ""
+        };
         if(user != null) {
             FormService.findAllFormsForUser(user.id)
                 .then(function(allUserForms) {
-                    console.log(allUserForms);
                     $scope.forms = allUserForms;
                 });
         } else {
             alert("You need to register/login!");
         }
 
-    	$scope.addForm = function(form) {
+    	$scope.addForm = function(newForm) {
     		// Create new object to pass to service. This separates the ng-model from
             // the ng-repeat data.  TBH, this is a hack and should be more eloquent. 
             var newForm = {
-                title: form.title
+                title: newForm.title
             };
 
             // reset the ng-model.
@@ -61,7 +63,7 @@
             // NOTE:  the assignment 3 requirements were vague about what this
             // function is meant to do.  Plus, the pencil button seems weird as
             // a selectForm() button.  Doesn't seem intuitive to me :).
-            $scope.selectedForm.name = $scope.forms[index].name;
+            $scope.selectedForm.title = $scope.forms[index].title;
         }
     }
 })();

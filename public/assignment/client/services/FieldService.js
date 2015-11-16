@@ -18,7 +18,7 @@
         // Accepts a form id and field object.  Calls field service on server
         // to add new field to corresponding form.  Returns a promise.
         function createFieldForForm(formid, field) {
-            var deferred = q.defer();
+            var deferred = $q.defer();
             $http.post(" /api/assignment/form/" + formid + "/field", field)
                 .success(function(response) {
                     deferred.resolve(response);

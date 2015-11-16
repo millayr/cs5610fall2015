@@ -23,7 +23,12 @@
                     controller: "FormController"
                 })
                 .when("/user", {
-                    templateUrl: "./views/field/field.view.html"
+                    templateUrl: "./views/field/field.view.html",
+                    controller: "FieldController"
+                })
+                .when("/user/:userid/form/:formid/fields", {
+                    templateUrl: "./views/field/field.view.html",
+                    controller: "FieldController"
                 })
                 .when("/register", {
                     templateUrl: "./views/register/register.view.html",

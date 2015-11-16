@@ -18,7 +18,7 @@
 			</tr>
 			<tr>
 				<td>
-					<input ng-model="selectedForm.title" id="form-name" type="text" class="form-control" placeholder="title">
+					<input ng-model="selectedForm.title" type="text" class="form-control" placeholder="Title">
 				</td>
 				<td class="text-center">
 					<button ng-click="addForm(selectedForm)" class="glyphicon glyphicon-plus action-icon"></button>
@@ -28,7 +28,9 @@
 		</thead>
 		<tbody>
 			<tr ng-repeat="form in forms">
-				<td class="form-list">{{form.title}}</td>
+				<td class="form-list">
+					<a ng-href="#/user/{{form.userid}}/form/{{form.id}}/fields">{{form.title}}</a>
+				</td>
 				<td class="form-list text-center">
 					<button ng-click="deleteForm($index)" class="glyphicon glyphicon-remove action-icon"></button>
 					<button ng-click="selectForm($index)" class="glyphicon glyphicon-pencil action-icon"></button>
