@@ -20,7 +20,7 @@
             title: ""
         };
         if(user != null) {
-            FormService.findAllFormsForUser(user.id)
+            FormService.findAllFormsForUser(user._id)
                 .then(function(allUserForms) {
                     model.forms = allUserForms;
                 });
@@ -38,7 +38,7 @@
             // reset the ng-model.
             model.selectedForm.title = "";
 
-    		FormService.createFormForUser(user.id, newForm)
+    		FormService.createFormForUser(user._id, newForm)
                 // TODO:  this returns ALL forms and not just the ones owned by the user
                 .then(function(allForms) {
                     model.forms = allForms;
@@ -50,15 +50,15 @@
             // NOTE:  I'm sure we'll get more details about how this function should
             // work in the next assignment but for now it depends on the user first
             // clicking the pencil icon (a.k.a. the selectForm() button).
-            FormService.updateFormById(form.id, form)
+            FormService.updateFormById(form._id, form)
                 .then(function(allForms) {
                     // no-op for now
                 });
         }
 
         function deleteForm(index) {
-            var deletedId = model.forms[index].id;
-            FormService.deleteFormByIdForUser(deletedId, user.id)
+            var deletedId = model.forms[index]._id;
+            FormService.deleteFormByIdForUser(deletedId, user._id)
                 .then(function(remainingForms) {
                     model.forms = remainingForms.data;
                 });

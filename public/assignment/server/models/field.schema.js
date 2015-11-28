@@ -3,9 +3,9 @@
 module.exports = function(mongoose) {
     var FieldSchema = mongoose.Schema({
         label: String,
-        fieldType: {
+        type: {
             type: String,
-            enum: ["TEXT", "TEXTAREA", "RADIO", "CHECKBOX", "SELECT", "DATE"]
+            enum: ["TEXT", "TEXTAREA", "RADIOS", "CHECKBOXES", "DATE", "EMAIL", "OPTIONS"]
         },
         options: [{
             label: String,

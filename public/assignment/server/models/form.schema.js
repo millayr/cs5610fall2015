@@ -6,6 +6,6 @@ module.exports = function(mongoose) {
         title: String,
         userid: String,
         fields: [FieldSchema]
-    });
+    }, { collection: "cs5610.assignment.form" });
     return FormSchema;
 }

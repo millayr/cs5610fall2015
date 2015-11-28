@@ -12,12 +12,12 @@
 <form id="form-fields">
     <div ng-repeat="field in model.fields" class="row">
         <div class="form-group col-xs-7">
-            <label for={{field.id}}>{{field.label}}:</label>
+            <label for={{field._id}}>{{field.label}}:</label>
             <div ng-switch=field.type>
-                <input ng-switch-when="TEXT" id={{field.id}} type="text" class="form-control" placeholder={{field.placeholder}}>
-                <textarea ng-switch-when="TEXTAREA" id={{field.id}} class="form-control" rows="5" placeholder={{field.placeholder}}></textarea>
-                <input ng-switch-when="DATE" id={{field.id}} type="date" class="form-control" placeholder={{field.placeholder}}>
-                <select ng-switch-when="OPTIONS" id={{field.id}} name={{field.id}} class="form-control">
+                <input ng-switch-when="TEXT" id={{field._id}} type="text" class="form-control" placeholder={{field.placeholder}}>
+                <textarea ng-switch-when="TEXTAREA" id={{field._id}} class="form-control" rows="5" placeholder={{field.placeholder}}></textarea>
+                <input ng-switch-when="DATE" id={{field._id}} type="date" class="form-control" placeholder={{field.placeholder}}>
+                <select ng-switch-when="OPTIONS" id={{field._id}} name={{field._id}} class="form-control">
                     <option ng-repeat="choice in field.options" value={{choice.value}}>{{choice.label}}</option>
                 </select>
                 <div ng-switch-when="CHECKBOXES" ng-repeat="choice in field.options" class="checkbox">
@@ -26,7 +26,7 @@
                 <div ng-switch-when="RADIOS" ng-repeat="choice in field.options" class="radio">
                     <label><input type="radio" value={{choice.value}} name="license">{{choice.label}}</label>
                 </div>
-                <input ng-switch-when="EMAIL" id={{field.id}} type="email" class="form-control" placeholder={{field.placeholder}}>
+                <input ng-switch-when="EMAIL" id={{field._id}} type="email" class="form-control" placeholder={{field.placeholder}}>
             </div>
         </div>
         <div class="form-group col-xs-5 text-center valign">

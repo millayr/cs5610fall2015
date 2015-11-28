@@ -41,7 +41,7 @@
             });
 
         function removeField(index) {
-            FieldService.deleteFieldFromForm(formid, model.fields[index].id)
+            FieldService.deleteFieldFromForm(formid, model.fields[index]._id)
                 .then(function(revisedForm) {
                     model.fields = revisedForm.fields;
                 });

@@ -9,26 +9,46 @@ module.exports = function(app, formModel, db) {
 
     function retrieveFormFields(req, res) {
         // ask the model for the fields of the requested form
-        res.json(formModel.retrieveFormFields(req.params.formid));
+        formModel
+            .retrieveFormFields(req.params.formid)
+            .then(function(fields) {
+                res.json(fields);
+            });
     }
 
     function retrieveFormField(req, res) {
         // ask the model for the specific field in the requested form
-        res.json(formModel.retrieveFormField(req.params.formid, req.params.fieldid));
+        formModel
+            .retrieveFormField(req.params.formid, req.params.fieldid)
+            .then(function(field) {
+                res.json(field);
+            });
     }
 
     function removeFormField(req, res) {
         // ask the model to remove the specific field in the requested form
-        res.json(formModel.removeFormField(req.params.formid, req.params.fieldid));
+        formModel
+            .removeFormField(req.params.formid, req.params.fieldid)
+            .then(function(updatedForm) {
+                res.json(updatedForm);
+            });
     }
 
     function createFormField(req, res) {
         // ask the model to add a new field to the requested form
-        res.json(formModel.createFormField(req.params.formid, req.body));
+        formModel
+            .createFormField(req.params.formid, req.body)
+            .then(function(updatedForm) {
+                res.json(updatedForm);
+            });
     }
 
     function updateFormField(req, res) {
         // ask the model to update the requested field in the requested form
-        res.json(formModel.updateFormField(req.params.formid, req.params.fieldid, req.body));
+        formModel
+            .updateFormField(req.params.formid, req.params.fieldid, req.body)
+            .then(function(updatedForm) {
+                res.json(updatedForm);
+            });
     }
 };

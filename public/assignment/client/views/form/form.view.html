@@ -29,7 +29,7 @@
 		<tbody>
 			<tr ng-repeat="form in model.forms">
 				<td class="form-list">
-					<a ng-href="#/user/{{form.userid}}/form/{{form.id}}/fields">{{form.title}}</a>
+					<a ng-href="#/user/{{form.userid}}/form/{{form._id}}/fields">{{form.title}}</a>
 				</td>
 				<td class="form-list text-center">
 					<button ng-click="model.deleteForm($index)" class="glyphicon glyphicon-remove action-icon"></button>

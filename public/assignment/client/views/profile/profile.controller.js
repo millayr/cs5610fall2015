@@ -28,7 +28,6 @@
     		// create the user via the UserService
     		UserService.updateUser(user._id, updatedUser)
                 .then(function(mergedUser) {
-                    console.log(mergedUser);
                     model.user = mergedUser;
                     $rootScope.user = mergedUser;
                 });
