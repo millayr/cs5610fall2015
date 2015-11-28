@@ -67,7 +67,7 @@ module.exports = function(db, mongoose) {
     function update(id, updatedUser) {
         var deferred = q.defer();
 
-        UserModel.update({ _id: id }, { $set: updatedUser },
+        UserModel.findByIdAndUpdate(id, { $set: updatedUser }, { new: true },
             function(err, user) {
                 if(err) {
                     deferred.reject(err);
@@ -99,7 +99,7 @@ module.exports = function(db, mongoose) {
     function findUserByUsername(username) {
         var deferred = q.defer();
 
-        UserModel.find({ username: username }, function(err, user) {
+        UserModel.findOne({ username: username }, function(err, user) {
             if(err) {
                 deferred.reject(err);
             } else {
@@ -114,7 +114,7 @@ module.exports = function(db, mongoose) {
     function findUserByCredentials(creds) {
         var deferred = q.defer();
 
-        UserModel.find({ username: creds.username, password: creds.password },
+        UserModel.findOne({ username: creds.username, password: creds.password },
             function(err, user) {
                 if(err) {
                     deferred.reject(err);
@@ -123,7 +123,7 @@ module.exports = function(db, mongoose) {
                 }
             }
         );
-        
+
         return deferred.promise;
     }
 };
