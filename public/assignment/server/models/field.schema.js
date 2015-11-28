@@ -12,6 +12,6 @@ module.exports = function(mongoose) {
             value: String
         }],
         placeholder: String
-    }, { collection: "cs5610.assignment.field" });
+    }, { collection: "cs5610.assignment.form" });
     return FieldSchema;
 }
