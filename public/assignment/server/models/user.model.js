@@ -1,5 +1,7 @@
 "use strict";
 
+var q = require("q");
+
 module.exports = function(db, mongoose) {
     var UserSchema = require("./user.schema.js")(mongoose);
     var UserModel = mongoose.model("UserModel", UserSchema);
@@ -15,96 +17,113 @@ module.exports = function(db, mongoose) {
     return api;
 
     // accepts a new user object to create.
-    // TODO:  update for use with a Mongo backend
     function create(newUser) {
-        newUser.id = guid();
-        users.push(newUser);
-        return newUser;
+        var deferred = q.defer();
+
+        UserModel.create(newUser, function(err, newUser) {
+            if(err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(newUser);
+            }
+        });
+
+        return deferred.promise;
     }
 
     // returns all users
     function findAll() {
-        return users;
+        var deferred = q.defer();
+
+        UserModel.find(function(err, allUsers) {
+            if(err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(allUsers);
+            }
+        });
+
+        return deferred.promise;
     }
 
     // return the user that has the matching id
     function findById(id) {
-        // iterate over users and look for a match.
-        // TODO: I imagine this will be replace by a single lookup to Mongo
-        for(var i = 0; i < users.length; i++) {
-            if(users[i].id == id) {
-                // user found!
-                return users[i];
+        var deferred = q.defer();
+
+        UserModel.findById(id, function(err, user) {
+            if(err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(user);
             }
-        }
-        return null;
+        });
+
+        return deferred.promise;
     }
 
     // accepts an id and a user object with updates.
     // locates matching user doc if it exists and updates the corresponding
     // fields.
     function update(id, updatedUser) {
-        // iterate over users array and look for a match
-        for(var i = 0; i < users.length; i++) {
-            if(users[i].id == id) {
-                // user found!  time to update the user properties
-                for(var attr in updatedUser) {
-                    if(updatedUser.hasOwnProperty(attr))
-                        users[i][attr] = updatedUser[attr];
+        var deferred = q.defer();
+
+        UserModel.update({ _id: id }, { $set: updatedUser },
+            function(err, user) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(user);
                 }
-                return users[i];
             }
-        }
+        );
+
+        return deferred.promise;
     }
 
     // accepts an id of a user doc.  deletes the record if found.
     function remove(id) {
-        // iterate over users and look for a match
-        for(var i = 0; i < users.length; i++) {
-            if(users[i].id == id) {
-                // user found!
-                users.splice(i, 1);
+        var deferred = q.defer();
+
+        UserModel.remove({ _id: id }, function(err, status) {
+            if(err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(status);
             }
-        }
+        });
+
+        return deferred.promise;
     }
 
     // accepts a username and returns matching user doc if found
     function findUserByUsername(username) {
-        // iterate over users and look for a match.
-        // TODO: I imagine this will be replace by a single lookup to Mongo
-        for(var i = 0; i < users.length; i++) {
-            if(users[i].username === username) {
-                // user found!
-                return users[i];
+        var deferred = q.defer();
+
+        UserModel.find({ username: username }, function(err, user) {
+            if(err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(user);
             }
-        }
-        return null;
+        });
+
+        return deferred.promise;
     }
 
     // accepts a credentials object and returns the matching user
     function findUserByCredentials(creds) {
-        var matchedUser = null;
+        var deferred = q.defer();
 
-        // iterate over current users and look for a match
-        for(var i = 0; i < users.length; i++) {
-            if(users[i].username === creds.username
-                && users[i].password === creds.password) {
-                // user found!
-                return users[i];
+        UserModel.find({ username: creds.username, password: creds.password },
+            function(err, user) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(user);
+                }
             }
-        }
-        return null;
-    }
-
-    // temporary guid function for this assignment
-    function guid() {
-        function s4() {
-            return Math
-                .floor((1 + Math.random()) * 0x10000)
-                .toString(16)
-                .substring(1);
-        }
-        return s4() + s4() + '-' + s4() + '-' + s4() + '-'
-            + s4() + '-' + s4() + s4() + s4();
+        );
+        
+        return deferred.promise;
     }
 };

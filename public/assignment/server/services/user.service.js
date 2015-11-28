@@ -9,7 +9,11 @@ module.exports = function(app, userModel, db) {
 
     function createUser(req, res) {
         // grab the new user from the req body and send it to the model
-        res.json(userModel.create(req.body));
+        userModel
+            .create(req.body)
+            .then(function(newUser) {
+                res.json(newUser);
+            });
     }
 
     function findUsers(req, res) {
@@ -21,32 +25,56 @@ module.exports = function(app, userModel, db) {
         // 2 - find by username
         // 3 - return all
         if(rUsername != null && rPassword != null) {
-            res.json(userModel.findUserByCredentials({
-                username: rUsername,
-                password: rPassword
-            }));
+            userModel
+                .findUserByCredentials({
+                    username: rUsername,
+                    password: rPassword
+                })
+                .then(function(user) {
+                    res.json(user);
+                });
         } else if(rUsername != null) {
-            res.json(userModel.findUserByUsername(rUsername));
+            userModel
+                .findUserByUsername(rUsername)
+                .then(function(user) {
+                    res.json(user);
+                });
         } else {
-            res.json(userModel.findAll());
+            userModel
+                .findAll()
+                .then(function(allUsers) {
+                    res.json(allUsers);
+                });
         }
     }
 
     function findUserById(req, res) {
         // return the user that matches the id in req
-        res.json(userModel.findById(req.params.id));
+        userModel
+            .findById(req.params.id)
+            .then(function(user) {
+                res.json(user);
+            });
     }
 
     function updateUser(req, res) {
         // update the matching user with the contents of the PUT
-        res.json(userModel.update(req.params.id, req.body));
+        userModel
+            .update(req.params.id, req.body)
+            .then(function(user) {
+                res.json(user);
+            });
     }
 
     function deleteUser(req, res) {
-        // delete the user matching the id
-        userModel.remove(req.params.id);
+        userModel
+            .remove(req.params.id)
+            .then(function(status) {
+                //TODO: propogate error if occurs
+                console.log(status);
 
-        // respond with the list of users
-        res.json(userModel.findAll());
+                // send back the list of remaining users
+                findUsers(req, res);
+            });
     }
 };
