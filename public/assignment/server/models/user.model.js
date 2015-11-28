@@ -1,8 +1,8 @@
 "use strict";
 
-var users = require("./user.mock.json");
-
-module.exports = function(app, db) {
+module.exports = function(db, mongoose) {
+    var UserSchema = require("./user.schema.js")(mongoose);
+    var UserModel = mongoose.model("UserModel", UserSchema);
     var api = {
         create: create,
         findAll: findAll,
