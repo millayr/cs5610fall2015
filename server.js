@@ -32,8 +32,8 @@ if (typeof ipaddress === "undefined") {
         pass: 'YETkVcJfZ7an'
     };
     // set up the database connection for openshift
-    mongoose.connect("mongodb://" + $OPENSHIFT_MONGODB_DB_HOST
-        + ":" + $OPENSHIFT_MONGODB_DB_PORT + database_name, options);
+    mongoose.connect("mongodb://" + process.env.OPENSHIFT_MONGODB_DB_HOST + ":"
+        + process.env.OPENSHIFT_MONGODB_DB_PORT + database_name, options);
 }
 
 app.listen(port, ipaddress);
