@@ -36,7 +36,7 @@ if (typeof ipaddress === "undefined") {
         + ":" + $OPENSHIFT_MONGODB_DB_PORT + database_name, options);
 }
 
+app.listen(port, ipaddress);
+
 var db = mongoose.connection;
 require("./public/assignment/server/app.js")(app, db, mongoose);
-
-app.listen(port, ipaddress);
