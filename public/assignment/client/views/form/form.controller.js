@@ -51,8 +51,13 @@
             // work in the next assignment but for now it depends on the user first
             // clicking the pencil icon (a.k.a. the selectForm() button).
             FormService.updateFormById(form._id, form)
-                .then(function(allForms) {
-                    // no-op for now
+                .then(function(updatedForm) {
+                    // update the rendered form in the list
+                    model.forms[form.index] = updatedForm;
+                    // reset selected form
+                    model.selectedForm = {
+                        title: ""
+                    };
                 });
         }
 
@@ -69,6 +74,8 @@
             // function is meant to do.  Plus, the pencil button seems weird as
             // a selectForm() button.  Doesn't seem intuitive to me :).
             model.selectedForm.title = model.forms[index].title;
+            model.selectedForm._id = model.forms[index]._id;
+            model.selectedForm.index = index;
         }
     }
 })();
