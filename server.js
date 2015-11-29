@@ -27,9 +27,13 @@ if (typeof ipaddress === "undefined") {
     // set up the database connection for local
     mongoose.connect("mongodb://" + ipaddress + database_name);
 } else {
+    var options = {
+        user: 'admin',
+        pass: 'YETkVcJfZ7an'
+    };
     // set up the database connection for openshift
     mongoose.connect("mongodb://" + $OPENSHIFT_MONGODB_DB_HOST
-        + ":" + $OPENSHIFT_MONGODB_DB_PORT + database_name);
+        + ":" + $OPENSHIFT_MONGODB_DB_PORT + database_name, options);
 }
 
 var db = mongoose.connection;
