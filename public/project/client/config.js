@@ -7,34 +7,34 @@
         .config(function($routeProvider){
             $routeProvider
                 .when("/home", {
-                    templateUrl: "./home/home.view.html"
+                    templateUrl: "./views/home/home.view.html"
                 })
                 .when("/signup", {
-                    templateUrl: "./signup/signup.view.html"
+                    templateUrl: "./views/signup/signup.view.html"
                 })
                 .when("/login", {
-                    templateUrl: "./login/login.view.html"
+                    templateUrl: "./views/login/login.view.html"
                 })
                 .when("/profile", {
-                    templateUrl: "./profile/profile.view.html"
+                    templateUrl: "./views/profile/profile.view.html"
                 })
                 .when("/search-results", {
-                    templateUrl: "./search/search-results.view.html"
+                    templateUrl: "./views/search/search-results.view.html"
                 })
                 .when("/beer-info", {
-                    templateUrl: "./beer/beer-info.view.html"
+                    templateUrl: "./views/beer/beer-info.view.html"
                 })
                 .when("/brewery-info", {
-                    templateUrl: "./brewery/brewery-info.view.html"
+                    templateUrl: "./views/brewery/brewery-info.view.html"
                 })
                 .when("/cart", {
-                    templateUrl: "./cart/cart.view.html"
+                    templateUrl: "./views/cart/cart.view.html"
                 })
                 .when("/checkout", {
-                    templateUrl: "./checkout/checkout.view.html"
+                    templateUrl: "./views/checkout/checkout.view.html"
                 })
                 .when("/dashboard", {
-                    templateUrl: "./dashboard/dashboard.view.html"
+                    templateUrl: "./views/dashboard/dashboard.view.html"
                 })
                 .otherwise({
                     redirectTo: "/home"
