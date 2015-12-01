@@ -1,6 +1,7 @@
 "use strict";
 
 module.exports = function(app, db, mongoose) {
-    require("./services/beer.service.js")(app);
-    require("./services/brewery.service.js")(app);
+    var brewerydbModel = require("./models/brewerydb.model.js");
+    require("./services/beer.service.js")(app, brewerydbModel);
+    require("./services/brewery.service.js")(app, brewerydbModel);
 };

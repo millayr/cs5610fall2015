@@ -328,11 +328,21 @@ var mockBeers = {
     "currentPage": 1
 };
 
-module.exports = function(app) {
+module.exports = function(app, brewerydbModel) {
+    app.get("/api/project/beer/:beerid", getBeerById);
     app.get("/api/project/trendingBeers", getTrendingBeers);
+
+    // send back data for a specific beer
+    function getBeerById(req, res) {
+        brewerydbModel
+            .getBeerById(req.params.beerid)
+            .then(function(beerData) {
+                res.json(beerData);
+            });
+    }
 
     // send back a list of beers popular amongst users
     function getTrendingBeers(req, res) {
         res.json(mockBeers);
     }
-}
+};

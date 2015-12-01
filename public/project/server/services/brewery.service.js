@@ -111,11 +111,11 @@ var mockBreweries = {
     "currentPage": 1
 };
 
-module.exports = function(app) {
+module.exports = function(app, brewerydbModel) {
     app.get("/api/project/trendingBreweries", getTrendingBreweries);
 
     // send back a list of breweries that are popular amongst users
     function getTrendingBreweries(req, res) {
         res.json(mockBreweries);
     }
-}
+};

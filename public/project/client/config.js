@@ -23,11 +23,14 @@
                 .when("/search-results", {
                     templateUrl: "./views/search/search-results.view.html"
                 })
-                .when("/beer-info", {
-                    templateUrl: "./views/beer/beer-info.view.html"
+                .when("/beer-info/:beerid", {
+                    templateUrl: "./views/beer/beer-info.view.html",
+                    controller: "BeerInfoController"
                 })
-                .when("/brewery-info", {
+                .when("/brewery-info/:breweryid", {
                     templateUrl: "./views/brewery/brewery-info.view.html"
+                    //controller: "BreweryController",
+                    //controllerAs: "model"
                 })
                 .when("/cart", {
                     templateUrl: "./views/cart/cart.view.html"
