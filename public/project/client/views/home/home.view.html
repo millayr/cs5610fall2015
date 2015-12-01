@@ -1,56 +1,16 @@
 <h1>Trending Beers</h1>
 <div class="row result-row">
-    <div class="col-sm-2 result-tile text-center">
-        <div><img src="./img/generic_beer.png"></div>
-        <label><a href="#/beer-info">Beer Name</a></label>
-    </div>
-    <div class="col-sm-2 result-tile text-center">
-        <div><img src="./img/generic_beer.png"></div>
-        <label><a href="#/beer-info">Beer Name</a></label>
-    </div>
-    <div class="col-sm-2 result-tile text-center">
-        <div><img src="./img/generic_beer.png"></div>
-        <label><a href="#/beer-info">Beer Name</a></label>
-    </div>
-    <div class="col-sm-2 result-tile text-center">
-        <div><img src="./img/generic_beer.png"></div>
-        <label><a href="#/beer-info">Beer Name</a></label>
-    </div>
-    <div class="col-sm-2 result-tile text-center">
-        <div><img src="./img/generic_beer.png"></div>
-        <label><a href="#/beer-info">Beer Name</a></label>
-    </div>
-    <div class="col-sm-2 result-tile text-center">
-        <div><img src="./img/generic_beer.png"></div>
-        <label><a href="#/beer-info">Beer Name</a></label>
+    <div ng-repeat="beer in model.beers" class="col-sm-2 result-tile text-center">
+        <div><img ng-src={{beer.labels.medium}} alt="Beer Label Not Found"></div>
+        <label><a href="#/beer-info/{{beer.id}}">{{beer.name}}</a></label>
     </div>
 </div>
 
 <h1>Trending Breweries</h1>
 <div class="row result-row">
-    <div class="col-sm-2 result-tile text-center">
-        <div><img src="./img/generic_brewery.jpg"></div>
-        <label><a href="#/brewery-info">Brewery Name</a></label>
-    </div>
-    <div class="col-sm-2 result-tile text-center">
-        <div><img src="./img/generic_brewery.jpg"></div>
-        <label><a href="#/brewery-info">Brewery Name</a></label>
-    </div>
-    <div class="col-sm-2 result-tile text-center">
-        <div><img src="./img/generic_brewery.jpg"></div>
-        <label><a href="#/brewery-info">Brewery Name</a></label>
-    </div>
-    <div class="col-sm-2 result-tile text-center">
-        <div><img src="./img/generic_brewery.jpg"></div>
-        <label><a href="#/brewery-info">Brewery Name</a></label>
-    </div>
-    <div class="col-sm-2 result-tile text-center">
-        <div><img src="./img/generic_brewery.jpg"></div>
-        <label><a href="#/brewery-info">Brewery Name</a></label>
-    </div>
-    <div class="col-sm-2 result-tile text-center">
-        <div><img src="./img/generic_brewery.jpg"></div>
-        <label><a href="#/brewery-info">Brewery Name</a></label>
+    <div ng-repeat="brewery in model.breweries" class="col-sm-2 result-tile text-center">
+        <div><img ng-src={{brewery.images.medium}} alt="Brewery Image Not Found"></div>
+        <label><a href="#/brewery-info/{{brewery.id}}">{{brewery.name}}</a></label>
     </div>
 </div>
 
