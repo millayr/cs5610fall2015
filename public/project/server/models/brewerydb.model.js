@@ -10,19 +10,39 @@ var brewerydbModel = {
         var deferred = q.defer();
 
         request({
-                uri: creds.host + "/beer/" + beerid,
-                qs: {
-                    key: creds.key
-                },
-                json: true
-            }, function(err, res, beerData) {
-                if(!err && res.statusCode == 200) {
+            uri: creds.host + "/beer/" + beerid,
+            qs: {
+                key: creds.key
+            },
+            json: true
+        }, function(err, res, beerData) {
+            if(!err && res.statusCode == 200) {
                     deferred.resolve(beerData);
                 } else {
                     deferred.reject(err);
                 }
+        });
+
+        return deferred.promise;
+    },
+    // go out to brewerydb and request the brewery that brewed
+    // a specific beer by id.
+    getBreweryForBeer: function(beerid) {
+        var deferred = q.defer();
+
+        request({
+            uri: creds.host + "/beer/" + beerid + "/breweries",
+            qs: {
+                key: creds.key
+            },
+            json: true
+        }, function(err, res, breweryData) {
+            if(!err && res.statusCode == 200) {
+                deferred.resolve(breweryData);
+            } else {
+                deferred.reject(err);
             }
-        );
+        });
 
         return deferred.promise;
     }
