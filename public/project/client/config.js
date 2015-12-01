@@ -28,9 +28,8 @@
                     controller: "BeerInfoController"
                 })
                 .when("/brewery-info/:breweryid", {
-                    templateUrl: "./views/brewery/brewery-info.view.html"
-                    //controller: "BreweryController",
-                    //controllerAs: "model"
+                    templateUrl: "./views/brewery/brewery-info.view.html",
+                    controller: "BreweryInfoController"
                 })
                 .when("/cart", {
                     templateUrl: "./views/cart/cart.view.html"

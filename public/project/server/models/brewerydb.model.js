@@ -45,6 +45,26 @@ var brewerydbModel = {
         });
 
         return deferred.promise;
+    },
+    // go out to brewerydb and request a specific brewery
+    getBreweryById: function(breweryid) {
+        var deferred = q.defer();
+
+        request({
+            uri: creds.host + "/brewery/" + breweryid,
+            qs: {
+                key: creds.key
+            },
+            json: true
+        }, function(err, res, breweryData) {
+            if(!err && res.statusCode == 200) {
+                deferred.resolve(breweryData);
+            } else {
+                deferred.reject(err);
+            }
+        });
+
+        return deferred.promise;
     }
 };
 

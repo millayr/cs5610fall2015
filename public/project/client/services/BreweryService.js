@@ -7,10 +7,22 @@
 
     function BreweryService($http, $q) {
         var service = {
+            getBrewery: getBrewery,
             getBreweryForBeer: getBreweryForBeer,
             getTrendingBreweries: getTrendingBreweries
         };
         return service;
+
+        // Accepts a brewery id.  Returns the matching brewery
+        // object.
+        function getBrewery(breweryid) {
+            var deferred = $q.defer();
+            $http.get("/api/project/brewery/" + breweryid)
+                .success(function(response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
 
         // Accepts a beer id.  Returns the brewery object that
         // brews that specific beer.

@@ -112,8 +112,18 @@ var mockBreweries = {
 };
 
 module.exports = function(app, brewerydbModel) {
+    app.get("/api/project/brewery/:breweryid", getBreweryById);
     app.get("/api/project/beer/:beerid/brewery", getBreweryForBeer);
     app.get("/api/project/trendingBreweries", getTrendingBreweries);
+
+    // send back the brewery object that matches the breweryid
+    function getBreweryById(req, res) {
+        brewerydbModel
+            .getBreweryById(req.params.breweryid)
+            .then(function(breweryData) {
+                res.json(breweryData);
+            });
+    }
 
     // send back the brewery object that brews the beer
     function getBreweryForBeer(req, res) {
