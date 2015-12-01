@@ -1,12 +1,12 @@
 <div class="row">
-    <h1 id="beer-info-title">Brewery Name</h1>
-    <p><label>Established:</label> 1986</p>
-    <p><label>Website:</label><a href="www.breweryname.com"> www.breweryname.com</a></p>
+    <h1 id="beer-info-title">{{brewery.name}}</h1>
+    <p><label>Established:</label> {{brewery.established}}</p>
+    <p>
+        <label>Website:</label>
+        <a ng-href={{brewery.website}} target="_blank"> {{brewery.website}}</a>
+    </p>
 </div>
 <div id="brewery-description" class="row">
     <h3>Description</h3>
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
+    <p>{{brewery.description}}</p>
 </div>
