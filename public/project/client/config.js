@@ -21,7 +21,8 @@
                     templateUrl: "./views/profile/profile.view.html"
                 })
                 .when("/search-results", {
-                    templateUrl: "./views/search/search-results.view.html"
+                    templateUrl: "./views/search/search-results.view.html",
+                    controller: "SearchResultsController"
                 })
                 .when("/beer-info/:beerid", {
                     templateUrl: "./views/beer/beer-info.view.html",

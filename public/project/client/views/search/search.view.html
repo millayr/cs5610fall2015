@@ -5,11 +5,13 @@
                    class="form-control" placeholder="Search Our Inventory!">
         </div>
         <div class="col-xs-4 col-sm-3">
-            <select id="search-options" name="options" class="form-control">
-                <option value="default">-- Options --</option>
+            <select ng-model="query.option"
+                    id="search-options"
+                    name="options"
+                    class="form-control">
+                <option value="all" selected="selected">All</option>
                 <option value="beer">Beer</option>
                 <option value="brewery">Brewery</option>
-                <option value="location">Location</option>
             </select>
         </div>
         <div class="col-xs-3">

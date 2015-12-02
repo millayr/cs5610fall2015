@@ -22,113 +22,21 @@
         </nav>
     </div>
     <div class="col-xs-12 col-sm-4 text-right">
-        <label>57 Results</label>
+        <label>{{numResults}}</label>
     </div>
 </div>
 <div id="search-result-content" class="row">
     <div class="container-fluid">
-        <div class="row result-row">
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-        </div>
-        <div class="row result-row">
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-        </div>
-        <div class="row result-row">
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-        </div>
-        <div class="row result-row">
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
-            </div>
-            <div class="col-sm-2 result-tile text-center">
-                <div><img src="./img/generic_beer.png"></div>
-                <label><a href="#/beer-info">Beer Name</a></label>
+        <div ng-repeat="row in resultRows" class="row result-row">
+            <div ng-repeat="result in row" class="col-sm-2 result-tile text-center">
+                <div ng-switch="result.type">
+                    <img ng-switch-when="beer" ng-src={{result.labels.medium}} alt="Result Image">
+                    <img ng-switch-when="brewery" ng-src={{result.images.medium}} alt="Result Image">
+                </div>
+                <label ng-switch="result.type">
+                    <a ng-switch-when="beer" href="#/beer-info/{{result.id}}">{{result.name}}</a>
+                    <a ng-switch-when="brewery" href="#/brewery-info/{{result.id}}">{{result.name}}</a>
+                </label>
             </div>
         </div>
     </div>

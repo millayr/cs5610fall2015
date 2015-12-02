@@ -65,6 +65,32 @@ var brewerydbModel = {
         });
 
         return deferred.promise;
+    },
+    // got out to brewerydb with a user's search query
+    searchBrewerydb: function(query) {
+        var deferred = q.defer();
+
+        var options = {
+            q: query.text,
+            key: creds.key
+        };
+        if(query.option != null && query.option != "all") {
+            options.type = query.option;
+        }
+
+        request({
+            uri: creds.host + "/search",
+            qs: options,
+            json: true
+        }, function(err, res, searchResults) {
+            if(!err && res.statusCode == 200) {
+                deferred.resolve(searchResults);
+            } else {
+                deferred.reject(err);
+            }
+        });
+
+        return deferred.promise;
     }
 };
 
