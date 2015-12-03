@@ -72,11 +72,10 @@ var brewerydbModel = {
 
         var options = {
             q: query.text,
-            key: creds.key
+            key: creds.key,
+            type: query.option,
+            p: query.page
         };
-        if(query.option != null && query.option != "all") {
-            options.type = query.option;
-        }
 
         request({
             uri: creds.host + "/search",

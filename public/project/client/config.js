@@ -20,9 +20,10 @@
                 .when("/profile", {
                     templateUrl: "./views/profile/profile.view.html"
                 })
-                .when("/search-results", {
+                .when("/search-results/:option/:text", {
                     templateUrl: "./views/search/search-results.view.html",
-                    controller: "SearchResultsController"
+                    controller: "SearchResultsController",
+                    controllerAs: "model"
                 })
                 .when("/beer-info/:beerid", {
                     templateUrl: "./views/beer/beer-info.view.html",

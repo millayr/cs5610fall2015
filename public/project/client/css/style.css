@@ -27,6 +27,10 @@ tfoot > tr {
 	z-index: 1000;
 }
 
+label.no-padding {
+	padding-top: 0; !important
+}
+
 #search-result-header {
 	padding-top: 20px;
 	position: fixed;
@@ -56,14 +60,22 @@ tfoot > tr {
 	padding-bottom: 30px;
 }
 
+
+.result-tile > div {
+	min-height: 200px;
+	line-height: 200px;
+}
+
 .result-tile > div > img {
-	max-height: 150px;
-	max-width: 150px;
-	min-height: 150px;
-	min-width: 150px;
+	max-height: 200px;
+	vertical-align: middle;
 }
 .result-tile > label {
 	padding-top: 10px;
+}
+
+ul.pagination > li > a:hover {
+	cursor: pointer;
 }
 
 .sidebar {
@@ -180,4 +192,10 @@ tfoot > tr {
 	max-width: 250px;
 	min-height: 50px;
 	min-width: 50px;
+}
+
+#brew-house-title:hover,
+#link-menu > li > a:hover,
+#link-menu > li > button:hover {
+	background-color: red;
 }

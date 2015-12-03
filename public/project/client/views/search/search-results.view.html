@@ -3,18 +3,16 @@
     <div class="col-xs-6 col-sm-4 text-center">
         <nav>
             <ul class="pagination">
-                <li>
-                    <a href="#" aria-label="Previous">
+                <li ng-if="model.numPages > 1">
+                    <a ng-click="model.newPage(0)" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                    <a href="#" aria-label="Next">
+                <li ng-repeat="page in model.pageMap" ng-class="{'active' : page.active == true}">
+                    <a ng-click="model.newPage(page.index)">{{page.displayId}}</a>
+                </li>
+                <li ng-if="model.numPages > 1">
+                    <a ng-click="model.newPage(model.numPages - 1)" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
@@ -22,16 +20,34 @@
         </nav>
     </div>
     <div class="col-xs-12 col-sm-4 text-right">
-        <label>{{numResults}}</label>
+        <label>Total Results: {{model.numResults}}</label>
     </div>
 </div>
 <div id="search-result-content" class="row">
     <div class="container-fluid">
-        <div ng-repeat="row in resultRows" class="row result-row">
-            <div ng-repeat="result in row" class="col-sm-2 result-tile text-center">
+        <div ng-repeat="row in model.resultRows" class="row result-row">
+            <div ng-repeat="result in row" class="col-sm-2 result-tile text-center center-block">
                 <div ng-switch="result.type">
-                    <img ng-switch-when="beer" ng-src={{result.labels.medium}} alt="Result Image">
-                    <img ng-switch-when="brewery" ng-src={{result.images.medium}} alt="Result Image">
+                    <img ng-switch-when="beer"
+                         ng-if="result.labels.medium != undefined"
+                         ng-src={{result.labels.medium}}
+                         alt="Result Image"
+                         class="img-thumbnail img-responsive">
+                    <img ng-switch-when="beer"
+                         ng-if="result.labels.medium == undefined"
+                         src="./img/generic_beer.png"
+                         alt="Result Image"
+                         class="img-thumbnail img-responsive">
+                    <img ng-switch-when="brewery"
+                         ng-if="result.images.medium != undefined"
+                         ng-src={{result.images.medium}}
+                         alt="Result Image"
+                         class="img-thumbnail img-responsive">
+                    <img ng-switch-when="brewery"
+                         ng-if="result.images.medium == undefined"
+                         ng-src="./img/generic_brewery.jpg"
+                         alt="Result Image"
+                         class="img-thumbnail img-responsive">
                 </div>
                 <label ng-switch="result.type">
                     <a ng-switch-when="beer" href="#/beer-info/{{result.id}}">{{result.name}}</a>

@@ -5,18 +5,17 @@
         .module("BrewHouseApp")
         .controller("SearchController", SearchController);
 
-    function SearchController($scope, $rootScope, $location, SearchService) {
+    function SearchController($scope, $location) {
+        $scope.query = {
+            text: "",
+            option: "beer"
+        };
 
         $scope.search = function(query) {
-
-            // search brewerydb for the user's query.  Tuck the results
-            // away in the $rootScope and redirect to the results page.
-            SearchService.searchBrewerydb(query)
-                .then(function(results) {
-                    $rootScope.results = results.data;
-                    $rootScope.$broadcast("searchLoad", results.data);
-                    $location.path("/search-results");
-                });
-        }
+            if(query.text != "") {
+                $location.path("/search-results/"
+                    + query.option + "/" + query.text);
+            }
+        };
     }
 })();

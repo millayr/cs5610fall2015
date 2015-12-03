@@ -5,43 +5,90 @@
         .module("BrewHouseApp")
         .controller("SearchResultsController", SearchResultsController);
 
-    function SearchResultsController($scope, $rootScope) {
-        var numRows = 4;
+    function SearchResultsController($routeParams, SearchService) {
+        var model = this;
+        var query = {
+            text: $routeParams.text,
+            option: $routeParams.option,
+            page: 1
+        };
         var resultsPerRow = 6;
-        var resultsPerPage = numRows * resultsPerRow;
+        var pageDisplayLimit = 5;
+        model.pageMap = [];
 
-        // render the page if coming from a different area of the site
-        populate($rootScope.results);
+        // search brewerydb for the user's query.
+        SearchService.searchBrewerydb(query)
+            .then(function(queryResults) {
+                model.numResults = queryResults.totalResults;
+                model.numPages = queryResults.numberOfPages;
+                pageInit(queryResults.currentPage - 1, queryResults.numberOfPages);
+                populate(queryResults.data);
+            });
 
-        // trigger if the user searches for a new term if already on the
-        // search-results view.
-        $scope.$on("searchLoad", function(event, results) {
-            populate(results);
-        });
+        model.newPage = function(index) {
+            query.page = index + 1;
+            SearchService.searchBrewerydb(query)
+                .then(function(queryResults) {
+                    model.pageMap = [];
+                    pageInit(queryResults.currentPage - 1, queryResults.numberOfPages);
+                    populate(queryResults.data);
+                });
+        };
+
+        function pageInit(currentPage, numPages) {
+            var start;
+            var end;
+
+            if(numPages <= pageDisplayLimit) {
+                start = 0;
+                end = numPages;
+            } else {
+                // determine start
+                if(currentPage - Math.floor(pageDisplayLimit / 2) < 0) {
+                    start = 0;
+                } else if(currentPage + Math.floor(pageDisplayLimit / 2) > numPages) {
+                    start = numPages - pageDisplayLimit;
+                } else {
+                    start = currentPage - Math.floor(pageDisplayLimit / 2);
+                }
+
+                // determine end
+                if(currentPage + Math.floor(pageDisplayLimit / 2) >= numPages) {
+                    start = numPages - pageDisplayLimit;
+                    end = numPages;
+                } else if(currentPage - Math.floor(pageDisplayLimit / 2) < 0) {
+                    end = pageDisplayLimit;
+                } else {
+                    end = currentPage + Math.floor(pageDisplayLimit / 2) + 1;
+                }
+            }
+
+            for(var i = start; i < end; i++) {
+                model.pageMap.push({
+                    active: currentPage == i,
+                    index: i,
+                    displayId: i + 1
+                });
+            }
+        }
 
         function populate(results) {
-            console.log("here");
-            $scope.resultRows = [];
-            var allResults = results;
+            model.resultRows = [];
             var currentRow = 0;
-            for(var i = 0; i < allResults.length; i++) {
-                // drop results we don't support
-                if(allResults[i].type == "guild" || allResults[i].type == "event") {
-                    allResults.splice(i, 1);
-                    continue;
+            var pageResults = results;
+
+            for(var i = 0; i < pageResults.length; i++) {
+
+                if(model.resultRows[currentRow] == undefined) {
+                    model.resultRows.push([]);
                 }
 
-                if($scope.resultRows[currentRow] == undefined) {
-                    $scope.resultRows.push([]);
-                }
+                model.resultRows[currentRow].push(pageResults[i]);
 
-                $scope.resultRows[currentRow].push(allResults[i]);
-
-                if($scope.resultRows[currentRow].length == resultsPerRow) {
+                if(model.resultRows[currentRow].length == resultsPerRow) {
                     currentRow++;
                 }
             }
-            $scope.numResults = allResults.length;
         }
     }
 })();
