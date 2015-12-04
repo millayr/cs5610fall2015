@@ -21,7 +21,7 @@
         }
 
         $scope.$on("breweryLoad", function(event, brewery) {
-            $scope.breweryid = brewery.id;
+            $scope.breweryName = brewery.name;
             if(brewery.images == undefined) {
                 $scope.imgUrl = "./img/generic_brewery.jpg";
             } else {
