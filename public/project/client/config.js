@@ -12,13 +12,19 @@
                     controllerAs: "model"
                 })
                 .when("/signup", {
-                    templateUrl: "./views/signup/signup.view.html"
+                    templateUrl: "./views/signup/signup.view.html",
+                    controller: "SignUpController",
+                    controllerAs: "model"
                 })
                 .when("/login", {
-                    templateUrl: "./views/login/login.view.html"
+                    templateUrl: "./views/login/login.view.html",
+                    controller: "LoginController",
+                    controllerAs: "model"
                 })
                 .when("/profile", {
-                    templateUrl: "./views/profile/profile.view.html"
+                    templateUrl: "./views/profile/profile.view.html",
+                    controller: "ProfileController",
+                    controllerAs: "model"
                 })
                 .when("/search-results/:option/:text", {
                     templateUrl: "./views/search/search-results.view.html",
