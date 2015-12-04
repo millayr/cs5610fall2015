@@ -13,41 +13,37 @@
 <div class="row">
     <label class="col-xs-3 col-sm-2 col-md-1">Smell:</label>
     <div class="col-xs-9 col-sm-10 col-md-11">
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
+        <span ng-if="avgSmell == undefined">Not Yet Rated</span>
+        <span ng-if="avgSmell != undefined"
+              ng-repeat="star in getNumber(avgSmell) track by $index"
+              class="glyphicon glyphicon-star"></span>
     </div>
 </div>
 <div class="row">
     <label class="col-xs-3 col-sm-2 col-md-1">Taste:</label>
     <div class="col-xs-9 col-sm-10 col-md-11">
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
+        <span ng-if="avgTaste == undefined">Not Yet Rated</span>
+        <span ng-if="avgTaste != undefined"
+              ng-repeat="star in getNumber(avgTaste) track by $index"
+              class="glyphicon glyphicon-star"></span>
     </div>
 </div>
 <div class="row">
     <label class="col-xs-3 col-sm-2 col-md-1">Hops:</label>
     <div class="col-xs-9 col-sm-10 col-md-11">
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star"></span>
+        <span ng-if="avgHops == undefined">Not Yet Rated</span>
+        <span ng-if="avgHops != undefined"
+              ng-repeat="star in getNumber(avgHops) track by $index"
+              class="glyphicon glyphicon-star"></span>
     </div>
 </div>
 <div class="row">
     <label class="col-xs-3 col-sm-2 col-md-1">Malts:</label>
     <div class="col-xs-9 col-sm-10 col-md-11">
-        <span class="glyphicon glyphicon-star"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
-        <span class="glyphicon glyphicon-star-empty"></span>
+        <span ng-if="avgMalts == undefined">Not Yet Rated</span>
+        <span ng-if="avgMalts != undefined"
+              ng-repeat="star in getNumber(avgMalts) track by $index"
+              class="glyphicon glyphicon-star"></span>
     </div>
 </div>
 <div class="row">

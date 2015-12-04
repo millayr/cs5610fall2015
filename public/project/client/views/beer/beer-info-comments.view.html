@@ -8,41 +8,53 @@
         <div class="row">
             <label class="col-xs-3 col-sm-2 col-md-1">Smell:</label>
             <div class="col-xs-9 col-sm-10 col-md-11">
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
+                <span class="star-input" ng-repeat="star in starArrays.smell track by $index">
+                    <span ng-if="!star"
+                          class="glyphicon glyphicon-star-empty"
+                              ng-click="setRating($index, starArrays.smell)"></span>
+                    <span ng-if="star"
+                          class="glyphicon glyphicon-star"
+                          ng-click="setRating($index, starArrays.smell)"></span>
+                </span>
             </div>
         </div>
         <div class="row">
             <label class="col-xs-3 col-sm-2 col-md-1">Taste:</label>
             <div class="col-xs-9 col-sm-10 col-md-11">
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
+                <span class="star-input" ng-repeat="star in starArrays.taste track by $index">
+                    <span ng-if="!star"
+                          class="glyphicon glyphicon-star-empty"
+                          ng-click="setRating($index, starArrays.taste)"></span>
+                    <span ng-if="star"
+                          class="glyphicon glyphicon-star"
+                          ng-click="setRating($index, starArrays.taste)"></span>
+                </span>
             </div>
         </div>
         <div class="row">
             <label class="col-xs-3 col-sm-2 col-md-1">Hops:</label>
             <div class="col-xs-9 col-sm-10 col-md-11">
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
+                <span class="star-input" ng-repeat="star in starArrays.hops track by $index">
+                    <span ng-if="!star"
+                          class="glyphicon glyphicon-star-empty"
+                          ng-click="setRating($index, starArrays.hops)"></span>
+                    <span ng-if="star"
+                          class="glyphicon glyphicon-star"
+                          ng-click="setRating($index, starArrays.hops)"></span>
+                </span>
             </div>
         </div>
         <div class="row">
             <label class="col-xs-3 col-sm-2 col-md-1">Malts:</label>
             <div class="col-xs-9 col-sm-10 col-md-11">
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
+                <span class="star-input" ng-repeat="star in starArrays.malts track by $index">
+                    <span ng-if="!star"
+                          class="glyphicon glyphicon-star-empty"
+                          ng-click="setRating($index, starArrays.malts)"></span>
+                    <span ng-if="star"
+                          class="glyphicon glyphicon-star"
+                          ng-click="setRating($index, starArrays.malts)"></span>
+                </span>
             </div>
         </div>
         <div class="row">
@@ -75,61 +87,39 @@
                     <b>{{comment.username}}</b>
                     <span class="pull-right">{{comment.date | date: "medium"}}</span>
                 </h4>
-                <!--
-                <div class="comment-title row">
-                    <div class="col-xs-9">
-                        <h4>{{comment.username}}</h4>
-                    </div>
-                    <div class="col-xs-3 text-right">
-                        {{comment.date | date: "medium"}}
-                    </div>
-                </div>
-                -->
             </div>
             <div class="panel-body">
                 <div class="row">
                     <label class="col-xs-3 col-sm-2 col-md-1">Smell:</label>
                     <div class="col-xs-9 col-sm-10 col-md-11">
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span ng-repeat="star in getNumber(comment.smell) track by $index"
+                              class="glyphicon glyphicon-star"></span>
                     </div>
                 </div>
                 <div class="row">
                     <label class="col-xs-3 col-sm-2 col-md-1">Taste:</label>
                     <div class="col-xs-9 col-sm-10 col-md-11">
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span ng-repeat="star in getNumber(comment.taste) track by $index"
+                              class="glyphicon glyphicon-star"></span>
                     </div>
                 </div>
                 <div class="row">
                     <label class="col-xs-3 col-sm-2 col-md-1">Hops:</label>
                     <div class="col-xs-9 col-sm-10 col-md-11">
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star"></span>
+                        <span ng-repeat="star in getNumber(comment.hops) track by $index"
+                              class="glyphicon glyphicon-star"></span>
                     </div>
                 </div>
                 <div class="row">
                     <label class="col-xs-3 col-sm-2 col-md-1">Malts:</label>
                     <div class="col-xs-9 col-sm-10 col-md-11">
-                        <span class="glyphicon glyphicon-star"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span ng-repeat="star in getNumber(comment.malts) track by $index"
+                              class="glyphicon glyphicon-star"></span>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <p>{{comment.comment}}</p>
+                        <p class="comment-desc">{{comment.comment}}</p>
                     </div>
                 </div>
             </div>

@@ -24,9 +24,11 @@
         // search brewerydb for the user's query.
         SearchService.searchBrewerydb(query)
             .then(function(queryResults) {
-                model.numResults = queryResults.totalResults;
-                model.numPages = queryResults.numberOfPages;
-                pageInit(queryResults.currentPage - 1, queryResults.numberOfPages);
+                model.numResults =
+                    (queryResults.totalResults == undefined ? 0 : queryResults.totalResults);
+                model.numPages =
+                    (queryResults.numberOfPages == undefined ? 0 : queryResults.numberOfPages);
+                pageInit(queryResults.currentPage - 1, model.numPages);
                 populate(queryResults.data);
             });
 
@@ -80,7 +82,7 @@
         function populate(results) {
             model.resultRows = [];
             var currentRow = 0;
-            var pageResults = results;
+            var pageResults = (results == undefined ? [] : results);
 
             for(var i = 0; i < pageResults.length; i++) {
 

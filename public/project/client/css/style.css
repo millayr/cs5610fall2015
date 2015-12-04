@@ -135,8 +135,16 @@ ul.pagination > li > a:hover {
 	padding-left: 0;
 }
 
+.star-input:hover {
+	cursor: pointer;
+}
+
 #beer-comment-submit {
 	margin-top: 10px;
+}
+
+.comment-desc {
+	padding-top: 10px;
 }
 
 #user-comments {
