@@ -199,3 +199,7 @@ ul.pagination > li > a:hover {
 #link-menu > li > button:hover {
 	background-color: red;
 }
+
+a#logout:hover {
+	cursor: pointer;
+}

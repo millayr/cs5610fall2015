@@ -23,6 +23,7 @@
     <script src="./views/signup/signup.controller.js"></script>
     <script src="./views/profile/profile.controller.js"></script>
     <script src="./views/login/login.controller.js"></script>
+    <script src="./views/header/header.controller.js"></script>
     <script src="./services/BeerService.js"></script>
     <script src="./services/BreweryService.js"></script>
     <script src="./services/SearchService.js"></script>
@@ -31,7 +32,7 @@
     <title>Brew House</title>
 </head>
 <body>
-<div ng-include="'./views/header/header.view.html'"></div>
+<div ng-controller="HeaderController" ng-include="'./views/header/header.view.html'"></div>
 <div class="container-fluid">
     <div ng-controller="SearchController" ng-include="'./views/search/search.view.html'"></div>
     <div class="content" ng-view></div>

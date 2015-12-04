@@ -22,6 +22,7 @@
                 .then(function(createdUser) {
                     // update root scope and navigate to profile
                     $rootScope.user = createdUser;
+                    $rootScope.$broadcast("login", createdUser);
                     $location.path("/profile");
                 });
         }
