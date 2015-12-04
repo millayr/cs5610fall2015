@@ -25,10 +25,5 @@
             }
             $location.path("/home");
         };
-
-        $scope.$on("logout", function() {
-            $scope.isLoggedIn = false;
-            delete $scope.username;
-        });
     }
 })();

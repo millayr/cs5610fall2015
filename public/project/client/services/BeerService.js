@@ -8,7 +8,9 @@
     function BeerService($http, $q) {
         var service = {
             getBeer: getBeer,
-            getTrendingBeers: getTrendingBeers
+            getTrendingBeers: getTrendingBeers,
+            getBeerComments: getBeerComments,
+            addComment: addComment
         };
         return service;
 
@@ -28,6 +30,28 @@
             var deferred = $q.defer();
             $http.get("/api/project/trendingBeers")
                 .success(function (response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+        // Accepts a beer id.  Returns all comments left
+        // for the beer.
+        function getBeerComments(id) {
+            var deferred = $q.defer();
+            $http.get("/api/project/beer/" + id + "/comment")
+                .success(function(response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+        // Accepts a new comment object and saves to db.  Returns
+        // new list of comments.
+        function addComment(comment) {
+            var deferred = $q.defer();
+            $http.post("/api/project/beer/comment", comment)
+                .success(function(response) {
                     deferred.resolve(response);
                 });
             return deferred.promise;

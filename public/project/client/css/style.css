@@ -19,9 +19,10 @@ tfoot > tr {
 #search-div {
 	padding-top: 15px;
 	padding-bottom: 15px;
-	border-top: solid #eee;
+	border-top: 3px solid white;
 	border-bottom: solid black 1px;
-	background-color: #b0a18e;
+	/*background-color: #b0a18e;*/
+	background-color: #F5F5F5;
 	position: fixed;
 	width: 100%;
 	z-index: 1000;
@@ -79,7 +80,6 @@ ul.pagination > li > a:hover {
 }
 
 .sidebar {
-	background-color: #EEEBE7;
 	padding: 20px;
 }
 .sidebar > div > img {
@@ -104,7 +104,6 @@ ul.pagination > li > a:hover {
 		z-index: 1000;
 		padding: 20px;
 		display: block;
-		background-color: #EEEBE7;
 		border-right: 3px solid #eee;
 	}
 	.sidebar > form {
@@ -120,10 +119,6 @@ ul.pagination > li > a:hover {
 	padding-bottom: 15px;
 }
 
-.rating {
-	padding-left: 0;
-}
-
 .green {
 	color: green;
 }
@@ -132,8 +127,11 @@ ul.pagination > li > a:hover {
 	color: red;
 }
 
-#beer-comment-form > div,
-#beer-comment-form > div > div {
+.description {
+	background-color: #F5F5F5;
+}
+
+#beer-comment-form > div {
 	padding-left: 0;
 }
 
@@ -143,11 +141,6 @@ ul.pagination > li > a:hover {
 
 #user-comments {
 	padding-top: 50px;
-}
-
-.comment {
-	padding-bottom: 30px;
-	border-top: solid 2px #eeeeee;
 }
 
 #brewery-beers-link {
@@ -197,7 +190,11 @@ ul.pagination > li > a:hover {
 #brew-house-title:hover,
 #link-menu > li > a:hover,
 #link-menu > li > button:hover {
-	background-color: red;
+	background-color: #CC8F00;
+}
+
+#link-menu > li > a:active, {
+	background-color: #CC8F00;
 }
 
 a#logout:hover {

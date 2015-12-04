@@ -5,7 +5,7 @@
         .module("BrewHouseApp")
         .controller("BeerInfoDescriptionController", BeerInfoDescriptionController);
 
-    function BeerInfoDescriptionController($scope, BreweryService) {
+    function BeerInfoDescriptionController($scope, BreweryService, BeerService) {
         $scope.$on("beerLoad", function(event, beer) {
             $scope.beer = beer;
 
@@ -14,7 +14,7 @@
                     // tell the scope about the brewery.
                     // The data object is an array with only one element.
                     $scope.brewery = breweryData.data[0];
-                })
+                });
         });
     }
 })();

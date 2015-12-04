@@ -1,8 +1,12 @@
-<div class="row"><h3>Comments/Reviews</h3></div>
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Comments/Reviews</h3>
+    </div>
+</div>
 <form id="beer-comment-form">
     <div class="container-fluid">
         <div class="row">
-            <label class="col-xs-3 col-sm-2 col-md-1 rating">Smell:</label>
+            <label class="col-xs-3 col-sm-2 col-md-1">Smell:</label>
             <div class="col-xs-9 col-sm-10 col-md-11">
                 <span class="glyphicon glyphicon-star-empty"></span>
                 <span class="glyphicon glyphicon-star-empty"></span>
@@ -12,7 +16,7 @@
             </div>
         </div>
         <div class="row">
-            <label class="col-xs-3 col-sm-2 col-md-1 rating">Taste:</label>
+            <label class="col-xs-3 col-sm-2 col-md-1">Taste:</label>
             <div class="col-xs-9 col-sm-10 col-md-11">
                 <span class="glyphicon glyphicon-star-empty"></span>
                 <span class="glyphicon glyphicon-star-empty"></span>
@@ -22,7 +26,7 @@
             </div>
         </div>
         <div class="row">
-            <label class="col-xs-3 col-sm-2 col-md-1 rating">Hops:</label>
+            <label class="col-xs-3 col-sm-2 col-md-1">Hops:</label>
             <div class="col-xs-9 col-sm-10 col-md-11">
                 <span class="glyphicon glyphicon-star-empty"></span>
                 <span class="glyphicon glyphicon-star-empty"></span>
@@ -32,7 +36,7 @@
             </div>
         </div>
         <div class="row">
-            <label class="col-xs-3 col-sm-2 col-md-1 rating">Malts:</label>
+            <label class="col-xs-3 col-sm-2 col-md-1">Malts:</label>
             <div class="col-xs-9 col-sm-10 col-md-11">
                 <span class="glyphicon glyphicon-star-empty"></span>
                 <span class="glyphicon glyphicon-star-empty"></span>
@@ -42,109 +46,92 @@
             </div>
         </div>
         <div class="row">
-            <textarea class="form-control" rows="5" placeholder="Enter free form comment here!"></textarea>
+            <div class="col-sm-12">
+                <textarea class="form-control"
+                          rows="5"
+                          placeholder="Enter free form comment here!"
+                          ng-if=isLoggedIn
+                          ng-model="newComment.comment"></textarea>
+                <textarea class="form-control"
+                          rows="5"
+                          placeholder="Please log in to comment!"
+                          ng-disabled=!isLoggedIn
+                          ng-if=!isLoggedIn></textarea>
+            </div>
         </div>
         <div class="row col-sm-12 text-left">
-            <button id="beer-comment-submit" class="btn btn-primary">Submit!</button>
+            <button id="beer-comment-submit"
+                    class="btn btn-primary"
+                    ng-disabled=!isLoggedIn
+                    ng-click="addComment(newComment)">Submit!</button>
         </div>
     </div>
 </form>
 <div id="user-comments" class="row">
     <div class="container-fluid">
-        <div class="comment">
-            <div class="row"><h4>beerLover20198</h4></div>
-            <div class="row">
-                <label class="col-xs-3 col-sm-2 col-md-1 rating">Smell:</label>
-                <div class="col-xs-9 col-sm-10 col-md-11">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
+        <div ng-repeat="comment in comments" class="comment panel panel-success">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <b>{{comment.username}}</b>
+                    <span class="pull-right">{{comment.date | date: "medium"}}</span>
+                </h4>
+                <!--
+                <div class="comment-title row">
+                    <div class="col-xs-9">
+                        <h4>{{comment.username}}</h4>
+                    </div>
+                    <div class="col-xs-3 text-right">
+                        {{comment.date | date: "medium"}}
+                    </div>
                 </div>
+                -->
             </div>
-            <div class="row">
-                <label class="col-xs-3 col-sm-2 col-md-1 rating">Taste:</label>
-                <div class="col-xs-9 col-sm-10 col-md-11">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
+            <div class="panel-body">
+                <div class="row">
+                    <label class="col-xs-3 col-sm-2 col-md-1">Smell:</label>
+                    <div class="col-xs-9 col-sm-10 col-md-11">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <label class="col-xs-3 col-sm-2 col-md-1 rating">Hops:</label>
-                <div class="col-xs-9 col-sm-10 col-md-11">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
+                <div class="row">
+                    <label class="col-xs-3 col-sm-2 col-md-1">Taste:</label>
+                    <div class="col-xs-9 col-sm-10 col-md-11">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <label class="col-xs-3 col-sm-2 col-md-1 rating">Malts:</label>
-                <div class="col-xs-9 col-sm-10 col-md-11">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
+                <div class="row">
+                    <label class="col-xs-3 col-sm-2 col-md-1">Hops:</label>
+                    <div class="col-xs-9 col-sm-10 col-md-11">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-            </div>
-        </div>
-        <div class="comment">
-            <div class="row"><h4>beerLover20198</h4></div>
-            <div class="row">
-                <label class="col-xs-3 col-sm-2 col-md-1 rating">Smell:</label>
-                <div class="col-xs-9 col-sm-10 col-md-11">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
+                <div class="row">
+                    <label class="col-xs-3 col-sm-2 col-md-1">Malts:</label>
+                    <div class="col-xs-9 col-sm-10 col-md-11">
+                        <span class="glyphicon glyphicon-star"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                        <span class="glyphicon glyphicon-star-empty"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <label class="col-xs-3 col-sm-2 col-md-1 rating">Taste:</label>
-                <div class="col-xs-9 col-sm-10 col-md-11">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p>{{comment.comment}}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <label class="col-xs-3 col-sm-2 col-md-1 rating">Hops:</label>
-                <div class="col-xs-9 col-sm-10 col-md-11">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                </div>
-            </div>
-            <div class="row">
-                <label class="col-xs-3 col-sm-2 col-md-1 rating">Malts:</label>
-                <div class="col-xs-9 col-sm-10 col-md-11">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                </div>
-            </div>
-            <div class="row">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
             </div>
         </div>
     </div>
