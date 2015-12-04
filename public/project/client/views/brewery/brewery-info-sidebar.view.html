@@ -1,8 +1,13 @@
 <p class="text-left">
     <span class="glyphicon glyphicon-arrow-left"></span>
-    <a href="#/search-results">Back to Results</a>
+    <a ng-if="backPageUrl == '#/search-results'"
+       href="{{backPageUrl}}/{{backData.option}}/{{backData.text}}">Back to Results</a>
+    <a ng-if="backPageUrl == '#/home'"
+       href="{{backPageUrl}}">Back to Home</a>
 </p>
 <div class="text-center">
-    <img ng-src={{imgUrl}} alt="Brewery Image">
+    <img ng-src={{imgUrl}} alt="Brewery Image" class="img-thumbnail img-responsive">
 </div>
-<a id="brewery-beers-link" href="#/search-results" class="btn btn-success btn-block">Explore Their Beers!</a>
+<a id="brewery-beers-link"
+   href="#/brewery-beers/{{breweryid}}"
+   class="btn btn-success btn-block">Explore Their Beers!</a>
