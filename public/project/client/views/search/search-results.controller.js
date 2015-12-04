@@ -5,7 +5,7 @@
         .module("BrewHouseApp")
         .controller("SearchResultsController", SearchResultsController);
 
-    function SearchResultsController($routeParams, SearchService) {
+    function SearchResultsController($routeParams, $rootScope, SearchService) {
         var model = this;
         var query = {
             text: $routeParams.text,
@@ -15,6 +15,11 @@
         var resultsPerRow = 6;
         var pageDisplayLimit = 5;
         model.pageMap = [];
+
+        // tuck the query away in the root scope for requests that come
+        // back to this page.
+        $rootScope.backPageUrl = "#/search-results";
+        $rootScope.backData = query;
 
         // search brewerydb for the user's query.
         SearchService.searchBrewerydb(query)

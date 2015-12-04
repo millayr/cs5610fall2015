@@ -1,9 +1,12 @@
 <p class="text-left">
     <span class="glyphicon glyphicon-arrow-left"></span>
-    <a href="#/search-results">Back to Results</a>
+    <a ng-if="backPageUrl == '#/search-results'"
+       href="{{backPageUrl}}/{{backData.option}}/{{backData.text}}">Back to Results</a>
+    <a ng-if="backPageUrl == '#/home'"
+       href="{{backPageUrl}}">Back to Home</a>
 </p>
 <div class="text-center">
-    <img ng-src={{imgUrl}} alt="Beer Label">
+    <img ng-src={{imgUrl}} alt="Beer Label" class="img-thumbnail img-responsive">
 </div>
 <form class="form-horizontal">
     <div class="container-fluid">
