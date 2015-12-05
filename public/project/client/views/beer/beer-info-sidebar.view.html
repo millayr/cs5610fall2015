@@ -12,16 +12,29 @@
     <div class="container-fluid">
         <div class="form-group">
             <label class="col-xs-4 col-sm-4 control-label">Price:</label>
-            <label class="col-xs-8 col-sm-8 control-label">$8.25</label>
+            <label class="col-xs-8 col-sm-8 control-label">${{price}}</label>
         </div>
         <div class="form-group">
             <label for="quantity" class="col-sm-4 control-label">Amount:</label>
             <div class="col-sm-offset-3 col-sm-5">
-                <input id="quantity" type="number" class="form-control" min="1" value="1">
+                <input ng-model="quantity" id="quantity" type="number" class="form-control" min="1" value="1">
             </div>
         </div>
         <div class="col-sm-12 text-center">
-            <a href="#/cart" class="btn btn-success btn-block">Add To Cart</a>
+            <button ng-if=isLoggedIn
+                    ng-click="addToCart(quantity)"
+                    class="btn btn-success btn-block">Add To Cart</button>
+            <button ng-if=!isLoggedIn
+                    class="btn btn-success btn block"
+                    disabled="disabled">Please Login</button>
+        </div>
+        <div ng-if=success
+             class="col-sm-12 alert alert-success alert-dismissible cart-alert"
+             role="alert">
+            <button type="button" class="close" ng-click="dismiss()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Success!</strong> Beer added to your cart!
         </div>
     </div>
 </form>

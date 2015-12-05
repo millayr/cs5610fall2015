@@ -208,3 +208,7 @@ ul.pagination > li > a:hover {
 a#logout:hover {
 	cursor: pointer;
 }
+
+.cart-alert {
+	margin-top: 10px;
+}
