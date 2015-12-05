@@ -9,7 +9,8 @@ module.exports = function(db, mongoose) {
         create: create,
         getCart: getCart,
         removeFromCart: removeFromCart,
-        updateItem: updateItem
+        updateItem: updateItem,
+        clearCart: clearCart
     };
     return api;
 
@@ -77,6 +78,21 @@ module.exports = function(db, mongoose) {
                 }
             }
         );
+
+        return deferred.promise;
+    }
+
+    // Accepts a username.  Deletes all entries in their cart.
+    function clearCart(username) {
+        var deferred = q.defer();
+
+        CartModel.remove({ username: username }, function(err, status) {
+            if(err) {
+                deferred.reject(err);
+            } else {
+                deferred.resolve(status);
+            }
+        });
 
         return deferred.promise;
     }

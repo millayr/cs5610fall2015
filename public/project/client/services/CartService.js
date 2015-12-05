@@ -10,7 +10,8 @@
             addToCart: addToCart,
             getCart: getCart,
             removeFromCart: removeFromCart,
-            updateItem: updateItem
+            updateItem: updateItem,
+            clearCart: clearCart
         };
         return service;
 
@@ -52,6 +53,16 @@
         function updateItem(item) {
             var deferred = $q.defer();
             $http.put("/api/project/cart/" + item.username + "/" + item._id, item)
+                .success(function(response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+        // accepts a username.  Removes all items from their cart.
+        function clearCart(username) {
+            var deferred = $q.defer();
+            $http.delete("/api/project/cart/" + username)
                 .success(function(response) {
                     deferred.resolve(response);
                 });

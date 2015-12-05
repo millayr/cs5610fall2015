@@ -5,6 +5,7 @@ module.exports = function(app, cartModel) {
     app.get("/api/project/cart/:username", getCart);
     app.delete("/api/project/cart/:username/:id", removeFromCart);
     app.put("/api/project/cart/:username/:id", updateItem);
+    app.delete("/api/project/cart/:username", clearCart);
 
     // send back a json obj with a true/false value after
     // adding to a user's cart.
@@ -42,6 +43,15 @@ module.exports = function(app, cartModel) {
             .updateItem(req.body)
             .then(function(item) {
                 res.json(item);
+            });
+    }
+
+    // removes all user cart entries
+    function clearCart(req, res) {
+        cartModel
+            .clearCart(req.params.username)
+            .then(function(status) {
+                res.json(status);
             });
     }
 };

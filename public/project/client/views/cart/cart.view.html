@@ -17,7 +17,7 @@
                 <td><b>Subtotal:</b></td>
                 <td><b>${{model.total}}</b></td>
                 <td><button ng-disabled="model.cart.length == 0"
-                            ng-click="checkout()"
+                            ng-click="model.checkout()"
                             class="btn btn-success">Check Out!</button>
                 </td>
             </tr>
