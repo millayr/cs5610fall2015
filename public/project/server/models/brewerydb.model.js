@@ -90,6 +90,47 @@ var brewerydbModel = {
         });
 
         return deferred.promise;
+    },
+    // get the Trending Beer list
+    getTrendingBeer: function() {
+        var deferred = q.defer();
+
+        request({
+            uri: creds.host + "/beer/random",
+            qs: {
+                key: creds.key,
+                hasLabels: "Y"
+            },
+            json: true
+        }, function (err, res, beer) {
+            if (!err && res.statusCode == 200) {
+                deferred.resolve(beer);
+            } else {
+                deferred.reject(err);
+            }
+        });
+
+        return deferred.promise;
+    },
+    // get the Trending Brewery list
+    getTrendingBrewery: function() {
+        var deferred = q.defer();
+
+        request({
+            uri: creds.host + "/brewery/random",
+            qs: {
+                key: creds.key
+            },
+            json: true
+        }, function (err, res, brewery) {
+            if (!err && res.statusCode == 200) {
+                deferred.resolve(brewery);
+            } else {
+                deferred.reject(err);
+            }
+        });
+
+        return deferred.promise;
     }
 };
 

@@ -7,15 +7,20 @@
 
     function HomeController(BeerService, BreweryService) {
         var model = this;
+        model.beers = [];
+        model.breweries = [];
+        var numTrending = 6;
 
-        BeerService.getTrendingBeers()
-            .then(function(trendingBeers) {
-                model.beers = trendingBeers.data;
-            });
+        for(var i = 0; i < numTrending; i++) {
+            BeerService.getTrendingBeer()
+                .then(function (trendingBeer) {
+                    model.beers.push(trendingBeer.data);
+                });
 
-        BreweryService.getTrendingBreweries()
-            .then(function(trendingBreweries) {
-                model.breweries = trendingBreweries.data;
-            });
+            BreweryService.getTrendingBrewery()
+                .then(function (trendingBrewery) {
+                    model.breweries.push(trendingBrewery.data);
+                });
+        }
     }
 })();
