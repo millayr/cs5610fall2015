@@ -3,7 +3,7 @@
 
 module.exports = function(app, brewerydbModel, commentModel) {
     app.get("/api/project/beer/:beerid", getBeerById);
-    app.get("/api/project/trendingBeer", getTrendingBeer);
+    app.get("/api/project/trendingBeers/:num", getTrendingBeers);
     app.get("/api/project/beer/:beerid/comment", getBeerComments);
     app.post("/api/project/beer/comment", addComment);
 
@@ -17,11 +17,11 @@ module.exports = function(app, brewerydbModel, commentModel) {
     }
 
     // send back a list of beers popular amongst users
-    function getTrendingBeer(req, res) {
+    function getTrendingBeers(req, res) {
         brewerydbModel
-            .getTrendingBeer()
-            .then(function(beer) {
-                res.json(beer);
+            .getTrendingBeers(req.params.num)
+            .then(function(beers) {
+                res.json(beers);
             });
     }
 

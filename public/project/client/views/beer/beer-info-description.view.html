@@ -1,48 +1,48 @@
 <div class="row">
     <div class="col-sm-12">
-        <h1 id="beer-info-title">{{beer.name}}</h1>
+        <h1 id="beer-info-title">{{desc.beer.name}}</h1>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-12">
         <label id="brewery-link-title">
-            <a href="#/brewery-info/{{brewery.id}}">{{brewery.name}}</a>
+            <a href="#/brewery-info/{{desc.brewery.id}}">{{desc.brewery.name}}</a>
         </label>
     </div>
 </div>
 <div class="row">
     <label class="col-xs-3 col-sm-2 col-md-1">Smell:</label>
     <div class="col-xs-9 col-sm-10 col-md-11">
-        <span ng-if="avgSmell == undefined">Not Yet Rated</span>
-        <span ng-if="avgSmell != undefined"
-              ng-repeat="star in getNumber(avgSmell) track by $index"
+        <span ng-if="desc.avgSmell == undefined">Not Yet Rated</span>
+        <span ng-if="desc.avgSmell != undefined"
+              ng-repeat="star in desc.getNumber(desc.avgSmell) track by $index"
               class="glyphicon glyphicon-star"></span>
     </div>
 </div>
 <div class="row">
     <label class="col-xs-3 col-sm-2 col-md-1">Taste:</label>
     <div class="col-xs-9 col-sm-10 col-md-11">
-        <span ng-if="avgTaste == undefined">Not Yet Rated</span>
-        <span ng-if="avgTaste != undefined"
-              ng-repeat="star in getNumber(avgTaste) track by $index"
+        <span ng-if="desc.avgTaste == undefined">Not Yet Rated</span>
+        <span ng-if="desc.avgTaste != undefined"
+              ng-repeat="star in desc.getNumber(desc.avgTaste) track by $index"
               class="glyphicon glyphicon-star"></span>
     </div>
 </div>
 <div class="row">
     <label class="col-xs-3 col-sm-2 col-md-1">Hops:</label>
     <div class="col-xs-9 col-sm-10 col-md-11">
-        <span ng-if="avgHops == undefined">Not Yet Rated</span>
-        <span ng-if="avgHops != undefined"
-              ng-repeat="star in getNumber(avgHops) track by $index"
+        <span ng-if="desc.avgHops == undefined">Not Yet Rated</span>
+        <span ng-if="desc.avgHops != undefined"
+              ng-repeat="star in desc.getNumber(desc.avgHops) track by $index"
               class="glyphicon glyphicon-star"></span>
     </div>
 </div>
 <div class="row">
     <label class="col-xs-3 col-sm-2 col-md-1">Malts:</label>
     <div class="col-xs-9 col-sm-10 col-md-11">
-        <span ng-if="avgMalts == undefined">Not Yet Rated</span>
-        <span ng-if="avgMalts != undefined"
-              ng-repeat="star in getNumber(avgMalts) track by $index"
+        <span ng-if="desc.avgMalts == undefined">Not Yet Rated</span>
+        <span ng-if="desc.avgMalts != undefined"
+              ng-repeat="star in desc.getNumber(desc.avgMalts) track by $index"
               class="glyphicon glyphicon-star"></span>
     </div>
 </div>
@@ -53,6 +53,6 @@
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <p>{{beer.description}}</p>
+        <p>{{desc.beer.description}}</p>
     </div>
 </div>

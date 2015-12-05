@@ -8,52 +8,52 @@
         <div class="row">
             <label class="col-xs-3 col-sm-2 col-md-1">Smell:</label>
             <div class="col-xs-9 col-sm-10 col-md-11">
-                <span class="star-input" ng-repeat="star in starArrays.smell track by $index">
+                <span class="star-input" ng-repeat="star in com.starArrays.smell track by $index">
                     <span ng-if="!star"
                           class="glyphicon glyphicon-star-empty"
-                              ng-click="setRating($index, starArrays.smell)"></span>
+                              ng-click="com.setRating($index, com.starArrays.smell)"></span>
                     <span ng-if="star"
                           class="glyphicon glyphicon-star"
-                          ng-click="setRating($index, starArrays.smell)"></span>
+                          ng-click="com.setRating($index, com.starArrays.smell)"></span>
                 </span>
             </div>
         </div>
         <div class="row">
             <label class="col-xs-3 col-sm-2 col-md-1">Taste:</label>
             <div class="col-xs-9 col-sm-10 col-md-11">
-                <span class="star-input" ng-repeat="star in starArrays.taste track by $index">
+                <span class="star-input" ng-repeat="star in com.starArrays.taste track by $index">
                     <span ng-if="!star"
                           class="glyphicon glyphicon-star-empty"
-                          ng-click="setRating($index, starArrays.taste)"></span>
+                          ng-click="com.setRating($index, com.starArrays.taste)"></span>
                     <span ng-if="star"
                           class="glyphicon glyphicon-star"
-                          ng-click="setRating($index, starArrays.taste)"></span>
+                          ng-click="com.setRating($index, com.starArrays.taste)"></span>
                 </span>
             </div>
         </div>
         <div class="row">
             <label class="col-xs-3 col-sm-2 col-md-1">Hops:</label>
             <div class="col-xs-9 col-sm-10 col-md-11">
-                <span class="star-input" ng-repeat="star in starArrays.hops track by $index">
+                <span class="star-input" ng-repeat="star in com.starArrays.hops track by $index">
                     <span ng-if="!star"
                           class="glyphicon glyphicon-star-empty"
-                          ng-click="setRating($index, starArrays.hops)"></span>
+                          ng-click="com.setRating($index, com.starArrays.hops)"></span>
                     <span ng-if="star"
                           class="glyphicon glyphicon-star"
-                          ng-click="setRating($index, starArrays.hops)"></span>
+                          ng-click="com.setRating($index, com.starArrays.hops)"></span>
                 </span>
             </div>
         </div>
         <div class="row">
             <label class="col-xs-3 col-sm-2 col-md-1">Malts:</label>
             <div class="col-xs-9 col-sm-10 col-md-11">
-                <span class="star-input" ng-repeat="star in starArrays.malts track by $index">
+                <span class="star-input" ng-repeat="star in com.starArrays.malts track by $index">
                     <span ng-if="!star"
                           class="glyphicon glyphicon-star-empty"
-                          ng-click="setRating($index, starArrays.malts)"></span>
+                          ng-click="com.setRating($index, com.starArrays.malts)"></span>
                     <span ng-if="star"
                           class="glyphicon glyphicon-star"
-                          ng-click="setRating($index, starArrays.malts)"></span>
+                          ng-click="com.setRating($index, com.starArrays.malts)"></span>
                 </span>
             </div>
         </div>
@@ -62,26 +62,26 @@
                 <textarea class="form-control"
                           rows="5"
                           placeholder="Enter free form comment here!"
-                          ng-if=isLoggedIn
-                          ng-model="newComment.comment"></textarea>
+                          ng-if=com.isLoggedIn
+                          ng-model="com.newComment.comment"></textarea>
                 <textarea class="form-control"
                           rows="5"
                           placeholder="Please log in to comment!"
-                          ng-disabled=!isLoggedIn
-                          ng-if=!isLoggedIn></textarea>
+                          ng-disabled=!com.isLoggedIn
+                          ng-if=!com.isLoggedIn></textarea>
             </div>
         </div>
         <div class="row col-sm-12 text-left">
             <button id="beer-comment-submit"
                     class="btn btn-primary"
-                    ng-disabled=!isLoggedIn
-                    ng-click="addComment(newComment)">Submit!</button>
+                    ng-disabled=!com.isLoggedIn
+                    ng-click="com.addComment(com.newComment)">Submit!</button>
         </div>
     </div>
 </form>
 <div id="user-comments" class="row">
     <div class="container-fluid">
-        <div ng-repeat="comment in comments" class="comment panel panel-success">
+        <div ng-repeat="comment in com.comments" class="comment panel panel-success">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <b>{{comment.username}}</b>
@@ -92,28 +92,28 @@
                 <div class="row">
                     <label class="col-xs-3 col-sm-2 col-md-1">Smell:</label>
                     <div class="col-xs-9 col-sm-10 col-md-11">
-                        <span ng-repeat="star in getNumber(comment.smell) track by $index"
+                        <span ng-repeat="star in com.getNumber(comment.smell) track by $index"
                               class="glyphicon glyphicon-star"></span>
                     </div>
                 </div>
                 <div class="row">
                     <label class="col-xs-3 col-sm-2 col-md-1">Taste:</label>
                     <div class="col-xs-9 col-sm-10 col-md-11">
-                        <span ng-repeat="star in getNumber(comment.taste) track by $index"
+                        <span ng-repeat="star in com.getNumber(comment.taste) track by $index"
                               class="glyphicon glyphicon-star"></span>
                     </div>
                 </div>
                 <div class="row">
                     <label class="col-xs-3 col-sm-2 col-md-1">Hops:</label>
                     <div class="col-xs-9 col-sm-10 col-md-11">
-                        <span ng-repeat="star in getNumber(comment.hops) track by $index"
+                        <span ng-repeat="star in com.getNumber(comment.hops) track by $index"
                               class="glyphicon glyphicon-star"></span>
                     </div>
                 </div>
                 <div class="row">
                     <label class="col-xs-3 col-sm-2 col-md-1">Malts:</label>
                     <div class="col-xs-9 col-sm-10 col-md-11">
-                        <span ng-repeat="star in getNumber(comment.malts) track by $index"
+                        <span ng-repeat="star in com.getNumber(comment.malts) track by $index"
                               class="glyphicon glyphicon-star"></span>
                     </div>
                 </div>

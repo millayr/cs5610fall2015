@@ -6,50 +6,51 @@
         .controller("BeerInfoCommentsController", BeerInfoCommentsController);
 
     function BeerInfoCommentsController($scope, $rootScope, $window, BeerService) {
+        var com = this;
         var user = $rootScope.user;
-        $scope.isLoggedIn = (user != undefined);
-        $scope.newComment = {};
-        $scope.starArrays = initStarArrays();
+        com.isLoggedIn = (user != undefined);
+        com.newComment = {};
+        com.starArrays = initStarArrays();
 
         $scope.$on("beerLoad", function(event, beer) {
-            $scope.beer = beer;
+            com.beer = beer;
 
-            BeerService.getBeerComments($scope.beer.id)
+            BeerService.getBeerComments(com.beer.id)
                 .then(function(commentData) {
-                    $scope.comments = commentData.comments;
+                    com.comments = commentData.comments;
                     $rootScope.$broadcast("averagesLoad", commentData.averages[0]);
                 });
         });
 
-        $scope.addComment = function(commentToSave) {
+        com.addComment = function(commentToSave) {
             if(!validateStars()) {
                 $window.alert("Please select ratings for all categories.");
                 return;
             }
 
-            commentToSave.smell = countStars($scope.starArrays.smell);
-            commentToSave.taste = countStars($scope.starArrays.taste);
-            commentToSave.hops = countStars($scope.starArrays.hops);
-            commentToSave.malts = countStars($scope.starArrays.malts);
+            commentToSave.smell = countStars(com.starArrays.smell);
+            commentToSave.taste = countStars(com.starArrays.taste);
+            commentToSave.hops = countStars(com.starArrays.hops);
+            commentToSave.malts = countStars(com.starArrays.malts);
             commentToSave.username = user._id;
-            commentToSave.beerid = $scope.beer.id;
+            commentToSave.beerid = com.beer.id;
 
             BeerService.addComment(commentToSave)
                 .then(function(commentData) {
-                    $scope.newComment.comment = "";
-                    $scope.starArrays = initStarArrays();
-                    $scope.comments = commentData.comments;
+                    com.newComment.comment = "";
+                    com.starArrays = initStarArrays();
+                    com.comments = commentData.comments;
                     $rootScope.$broadcast("averagesLoad", commentData.averages[0]);
                 });
         };
 
-        $scope.setRating = function(index, category) {
+        com.setRating = function(index, category) {
             for(var i = 0; i < category.length; i++) {
                 category[i] = (i <= index);
             }
         };
 
-        $scope.getNumber = function(number) {
+        com.getNumber = function(number) {
             return new Array(number);
         };
 
@@ -57,7 +58,7 @@
             var categories = ["smell", "taste", "hops", "malts"];
             for(var i = 0; i < categories.length; i++) {
                 // check the first star of each category to ensure there's input
-                if(!$scope.starArrays[categories[i]][0]) {
+                if(!com.starArrays[categories[i]][0]) {
                     return false;
                 }
             }

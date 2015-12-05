@@ -8,7 +8,7 @@
     function BeerService($http, $q) {
         var service = {
             getBeer: getBeer,
-            getTrendingBeer: getTrendingBeer,
+            getTrendingBeers: getTrendingBeers,
             getBeerComments: getBeerComments,
             addComment: addComment
         };
@@ -24,11 +24,11 @@
             return deferred.promise;
         }
 
-        // Accepts no arguments.  Returns a list of beers
+        // Accepts number of beers.  Returns a list of beers
         // that are popular amongst the users.
-        function getTrendingBeer() {
+        function getTrendingBeers(num) {
             var deferred = $q.defer();
-            $http.get("/api/project/trendingBeer")
+            $http.get("/api/project/trendingBeers/" + num)
                 .success(function (response) {
                     deferred.resolve(response);
                 });

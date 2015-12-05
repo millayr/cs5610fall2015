@@ -1,37 +1,37 @@
 <p class="text-left">
     <span class="glyphicon glyphicon-arrow-left"></span>
-    <a ng-if="backPageUrl == '#/search-results'"
-       href="{{backPageUrl}}/{{backData.option}}/{{backData.text}}">Back to Results</a>
-    <a ng-if="backPageUrl == '#/home'"
-       href="{{backPageUrl}}">Back to Home</a>
+    <a ng-if="sidebar.backPageUrl == '#/search-results'"
+       href="{{sidebar.backPageUrl}}/{{sidebar.backData.option}}/{{sidebar.backData.text}}">Back to Results</a>
+    <a ng-if="sidebar.backPageUrl == '#/home'"
+       href="{{sidebar.backPageUrl}}">Back to Home</a>
 </p>
 <div class="text-center">
-    <img ng-src={{imgUrl}} alt="Beer Label" class="img-thumbnail img-responsive">
+    <img ng-src={{sidebar.imgUrl}} alt="Beer Label" class="img-thumbnail img-responsive">
 </div>
 <form class="form-horizontal">
     <div class="container-fluid">
         <div class="form-group">
             <label class="col-xs-4 col-sm-4 control-label">Price:</label>
-            <label class="col-xs-8 col-sm-8 control-label">${{price}}</label>
+            <label class="col-xs-8 col-sm-8 control-label">${{sidebar.price}}</label>
         </div>
         <div class="form-group">
             <label for="quantity" class="col-sm-4 control-label">Amount:</label>
             <div class="col-sm-offset-3 col-sm-5">
-                <input ng-model="quantity" id="quantity" type="number" class="form-control" min="1" value="1">
+                <input ng-model="sidebar.quantity" id="quantity" type="number" class="form-control" min="1" value="1">
             </div>
         </div>
         <div class="col-sm-12 text-center">
-            <button ng-if=isLoggedIn
-                    ng-click="addToCart(quantity)"
+            <button ng-if=sidebar.isLoggedIn
+                    ng-click="sidebar.addToCart(sidebar.quantity)"
                     class="btn btn-success btn-block">Add To Cart</button>
-            <button ng-if=!isLoggedIn
+            <button ng-if=!sidebar.isLoggedIn
                     class="btn btn-success btn block"
                     disabled="disabled">Please Login</button>
         </div>
-        <div ng-if=success
+        <div ng-if=sidebar.success
              class="col-sm-12 alert alert-success alert-dismissible cart-alert"
              role="alert">
-            <button type="button" class="close" ng-click="dismiss()" aria-label="Close">
+            <button type="button" class="close" ng-click="sidebar.dismiss()" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             <strong>Success!</strong> Beer added to your cart!

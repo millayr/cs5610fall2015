@@ -92,19 +92,21 @@ var brewerydbModel = {
         return deferred.promise;
     },
     // get the Trending Beer list
-    getTrendingBeer: function() {
+    getTrendingBeers: function(num) {
         var deferred = q.defer();
 
         request({
-            uri: creds.host + "/beer/random",
+            uri: creds.host + "/beers",
             qs: {
                 key: creds.key,
-                hasLabels: "Y"
+                hasLabels: "Y",
+                order: "random",
+                randomCount: num
             },
             json: true
-        }, function (err, res, beer) {
+        }, function (err, res, beers) {
             if (!err && res.statusCode == 200) {
-                deferred.resolve(beer);
+                deferred.resolve(beers);
             } else {
                 deferred.reject(err);
             }
@@ -113,18 +115,20 @@ var brewerydbModel = {
         return deferred.promise;
     },
     // get the Trending Brewery list
-    getTrendingBrewery: function() {
+    getTrendingBreweries: function(num) {
         var deferred = q.defer();
 
         request({
-            uri: creds.host + "/brewery/random",
+            uri: creds.host + "/breweries",
             qs: {
-                key: creds.key
+                key: creds.key,
+                order: "random",
+                randomCount: num
             },
             json: true
-        }, function (err, res, brewery) {
+        }, function (err, res, breweries) {
             if (!err && res.statusCode == 200) {
-                deferred.resolve(brewery);
+                deferred.resolve(breweries);
             } else {
                 deferred.reject(err);
             }

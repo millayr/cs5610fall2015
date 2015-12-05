@@ -6,60 +6,61 @@
         .controller("BeerInfoSidebarController", BeerInfoSidebarController);
 
     function BeerInfoSidebarController($scope, $rootScope, CartService) {
-        $scope.success = false;
+        var sidebar = this;
+        sidebar.success = false;
 
         // grab the query information that was tucked away in the root scope.
         // we'll use this to build the "back" link.
         if($rootScope.backPageUrl != undefined) {
-            $scope.backPageUrl = $rootScope.backPageUrl;
+            sidebar.backPageUrl = $rootScope.backPageUrl;
             delete $rootScope.backPageUrl;
         } else {
-            $scope.backPageUrl = "#/home";
+            sidebar.backPageUrl = "#/home";
         }
 
         if($rootScope.backData != undefined) {
-            $scope.backData = $rootScope.backData;
+            sidebar.backData = $rootScope.backData;
             delete $rootScope.backData;
         }
 
         // check if the user is logged in
-        $scope.isLoggedIn = ($rootScope.user != undefined);
+        sidebar.isLoggedIn = ($rootScope.user != undefined);
 
         // populate the img url once we know what beer we're displaying
         $scope.$on("beerLoad", function(event, beer) {
             if(beer.labels == undefined) {
-                $scope.imgUrl = "./img/generic_beer.png";
+                sidebar.imgUrl = "./img/generic_beer.png";
             } else {
-                $scope.imgUrl = beer.labels.medium;
+                sidebar.imgUrl = beer.labels.medium;
             }
-            $scope.quantity = 1;
-            $scope.beer = beer;
-            $scope.price = getPrice(beer.id);
+            sidebar.quantity = 1;
+            sidebar.beer = beer;
+            sidebar.price = getPrice(beer.id);
         });
 
         // add this beer to a user's cart
-        $scope.addToCart = function(quantity) {
-            var totalPrice = $scope.price * quantity;
+        sidebar.addToCart = function(quantity) {
+            var totalPrice = sidebar.price * quantity;
 
             var cartItem = {
                 username: $rootScope.user._id,
                 contents: {
-                    beerid: $scope.beer.id,
-                    beerName: $scope.beer.name,
+                    beerid: sidebar.beer.id,
+                    beerName: sidebar.beer.name,
                     count: quantity,
-                    unitPrice: $scope.price,
+                    unitPrice: sidebar.price,
                     totalPrice: totalPrice
                 }
             };
 
             CartService.addToCart(cartItem)
                 .then(function(response) {
-                    $scope.success = response.success;
+                    sidebar.success = response.success;
                 });
         };
 
-        $scope.dismiss = function() {
-            $scope.success = false;
+        sidebar.dismiss = function() {
+            sidebar.success = false;
         };
 
         // helper function to create a consistent but fake price

@@ -9,7 +9,7 @@
         var service = {
             getBrewery: getBrewery,
             getBreweryForBeer: getBreweryForBeer,
-            getTrendingBrewery: getTrendingBrewery
+            getTrendingBreweries: getTrendingBreweries
         };
         return service;
 
@@ -37,9 +37,9 @@
 
         // Accepts no arguments.  Returns a list of breweries
         // that are popular amongst the users.
-        function getTrendingBrewery() {
+        function getTrendingBreweries(num) {
             var deferred = $q.defer();
-            $http.get("/api/project/trendingBrewery")
+            $http.get("/api/project/trendingBreweries/" + num)
                 .success(function(response) {
                     deferred.resolve(response);
                 });
