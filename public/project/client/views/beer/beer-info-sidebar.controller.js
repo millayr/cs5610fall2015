@@ -33,18 +33,22 @@
                 $scope.imgUrl = beer.labels.medium;
             }
             $scope.quantity = 1;
-            $scope.beerid = beer.id;
+            $scope.beer = beer;
             $scope.price = getPrice(beer.id);
         });
 
         // add this beer to a user's cart
         $scope.addToCart = function(quantity) {
+            var totalPrice = $scope.price * quantity;
+
             var cartItem = {
                 username: $rootScope.user._id,
                 contents: {
-                    beerid: $scope.beerid,
+                    beerid: $scope.beer.id,
+                    beerName: $scope.beer.name,
                     count: quantity,
-                    unitPrice: $scope.price
+                    unitPrice: $scope.price,
+                    totalPrice: totalPrice
                 }
             };
 
