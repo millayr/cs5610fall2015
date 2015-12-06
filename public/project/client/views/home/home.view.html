@@ -1,4 +1,15 @@
-<h1>Trending Beers</h1>
+<div id="welcome" class="jumbotron">
+    <h1>Welcome to Brew House!</h1>
+    <p>Brew House is an online store and community for beer enthusiasts and breweries
+        from all over the world.  Consumers can search a large inventory of beers and
+        breweries, place orders, and leave reviews for their favorite (or least favorite)
+        brews.  Brewers can view immediate feedback from their beer drinkers and respond
+        directly to each user with a personalized response.  Brew House shortens the
+        physical and figurative distances between the beer enthusiast and brewery.
+        Consumers now have countless new beers at their fingertips and breweries are
+        reaching regions and markets that they never thought possible!  Drink on!</p>
+</div>
+<h1 class="text-danger">Trending Beers</h1>
 <div class="row result-row">
     <div ng-repeat="beer in model.beers" class="col-sm-2 result-tile center-block text-center">
         <div>
@@ -15,7 +26,7 @@
     </div>
 </div>
 
-<h1>Trending Breweries</h1>
+<h1 class="text-danger">Trending Breweries</h1>
 <div class="row result-row">
     <div ng-repeat="brewery in model.breweries" class="col-sm-2 result-tile center-block text-center">
         <div>

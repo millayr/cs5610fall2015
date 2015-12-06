@@ -38,7 +38,7 @@ label.no-padding {
 	width: 100%;
 	z-index: 1000;
 	background-color: white;
-	border-bottom: solid black 1px;
+	border-bottom: solid 1px #eee;
 }
 #search-result-header > div > h1 {
 	padding: 0;
@@ -198,11 +198,13 @@ ul.pagination > li > a:hover {
 #brew-house-title:hover,
 #link-menu > li > a:hover,
 #link-menu > li > button:hover {
-	background-color: #CC8F00;
+	background-color: #F0F0D8;
+	color: black;
 }
 
 #link-menu > li > a:active, {
-	background-color: #CC8F00;
+	background-color: #F0F0D8;
+	color: black;
 }
 
 a#logout:hover {
@@ -211,4 +213,14 @@ a#logout:hover {
 
 .cart-alert {
 	margin-top: 10px;
+}
+
+#welcome {
+	margin-top: 15px;
+	background-color: #F0F0D8;
+}
+
+#welcome > h1 {
+	padding-top: 0;
+	padding-bottom: 0;
 }

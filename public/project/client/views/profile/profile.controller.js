@@ -23,21 +23,20 @@
         }
 
         model.update = function(updatedUser) {
-            if(updatedUser.password == undefined
-                || updatedUser.verifyPassword == undefined
-                || updatedUser.password != updatedUser.verifyPassword) {
+            if((updatedUser.password != undefined && updatedUser.verifyPassword == undefined)
+                || (updatedUser.password == undefined && updatedUser.verifyPassword != undefined)
+                || (updatedUser.password != updatedUser.verifyPassword)) {
                 $window.alert("Password fields don't match!");
                 return;
             }
 
-            // create the user via the UserService
             UserService.update(user._id, updatedUser)
                 .then(function(mergedUser) {
                     delete mergedUser.password;
                     model.user = mergedUser;
-                    $rootScope.user = mergedUser;
+                    $rootScope.user = model.user;
                     $window.alert("Record Updated!");
                 });
-        }
+        };
     }
 })();

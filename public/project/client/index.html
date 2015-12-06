@@ -36,7 +36,7 @@
     <title>Brew House</title>
 </head>
 <body>
-<div ng-controller="HeaderController" ng-include="'./views/header/header.view.html'"></div>
+<div ng-controller="HeaderController as header" ng-include="'./views/header/header.view.html'"></div>
 <div class="container-fluid">
     <div ng-controller="SearchController" ng-include="'./views/search/search.view.html'"></div>
     <div class="content" ng-view></div>

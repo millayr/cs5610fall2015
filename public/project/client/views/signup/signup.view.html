@@ -118,6 +118,30 @@
             <input ng-model="model.newUser.zipcode" id="zipcode" type="text" class="form-control" placeholder="Zipcode">
         </div>
     </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Are you a Brewery?:</label>
+        <div class="col-sm-9">
+            <label class="radio-inline">
+                <input ng-model="model.newUser.isBrewery"
+                       type="radio" name="inlineRadioOptions"
+                       id="inlineRadio1"
+                       value="true"> Yes
+            </label>
+            <label class="radio-inline">
+                <input ng-model="model.newUser.isBrewery"
+                       type="radio"
+                       name="inlineRadioOptions"
+                       id="inlineRadio2"
+                       value="false"> No
+            </label>
+        </div>
+    </div>
+    <div ng-if="model.newUser.isBrewery == 'true'" class="form-group">
+        <label for="brewery-name" class="col-sm-2 control-label">Brewery Name:</label>
+        <div class="col-sm-9">
+            <input ng-model="model.newUser.breweryName" id="brewery-name" type="text" class="form-control" placeholder="Brewery Name">
+        </div>
+    </div>
     <div class="col-sm-12 text-center">
         <button ng-click="model.signUp(model.newUser)" class="btn btn-primary">Sign Up!</button>
     </div>

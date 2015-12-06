@@ -11,12 +11,12 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul id="link-menu" class="nav navbar-nav navbar-right">
-                <li ng-if=!isLoggedIn><a href="#/signup">Sign Up</a></li>
-                <li ng-if=!isLoggedIn><a href="#/login">Login</a></li>
-                <li ng-if=isLoggedIn><a href="#/profile">{{username}}</a></li>
-                <li ng-if=isLoggedIn><a href="#/cart">Shopping Cart</a></li>
-                <li ng-if=isLoggedIn><a href="#/dashboard">Beer Dashboard</a></li>
-                <li ng-if=isLoggedIn><a id="logout" ng-click="logout()">Logout</a></li>
+                <li ng-if="!header.isLoggedIn"><a href="#/signup">Sign Up</a></li>
+                <li ng-if="!header.isLoggedIn"><a href="#/login">Login</a></li>
+                <li ng-if="header.isLoggedIn"><a href="#/profile">{{header.username}}</a></li>
+                <li ng-if="header.isLoggedIn"><a href="#/cart">Shopping Cart</a></li>
+                <li ng-if="header.isLoggedIn && header.isBrewery"><a href="#/dashboard">Brewer's Dashboard</a></li>
+                <li ng-if="header.isLoggedIn"><a id="logout" ng-click="header.logout()">Logout</a></li>
             </ul>
         </div>
     </div>

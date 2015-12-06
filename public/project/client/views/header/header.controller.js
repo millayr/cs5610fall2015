@@ -6,20 +6,22 @@
         .controller("HeaderController", HeaderController);
 
     function HeaderController($scope, $rootScope, $location) {
-        $scope.isLoggedIn = false;
+        var header = this;
+        header.isLoggedIn = false;
 
         $scope.$on("login", function(event, user) {
-            $scope.isLoggedIn = true;
-            $scope.username = user._id;
+            header.isLoggedIn = true;
+            header.isBrewery = user.isBrewery;
+            header.username = user._id;
         });
 
-        $scope.logout = function() {
+        header.logout = function() {
             if(!confirm("Are you sure?")) {
                 return;
             }
 
-            $scope.isLoggedIn = false;
-            delete $scope.username;
+            header.isLoggedIn = false;
+            delete header.username;
             if($rootScope.user != undefined) {
                 delete $rootScope.user;
             }
