@@ -5,13 +5,20 @@
         .module("BrewHouseApp")
         .controller("SignUpController", SignUpController);
 
-    function SignUpController($rootScope, $location, UserService, SearchService) {
+    function SignUpController($rootScope, $location, $window, UserService, SearchService) {
         var model = this;
         model.newUser = {
             isBrewery: "false"
         };
 
         model.signUp = function(newUser) {
+            if(newUser._id == undefined
+                || newUser._id
+                || model.usernameExists) {
+                $window.alert("Please enter a valid and unique username!");
+                return;
+            }
+
             if(newUser.password == undefined
                 || newUser.verifyPassword == undefined
                 || newUser.password != newUser.verifyPassword) {
@@ -43,6 +50,18 @@
                 createUser(newUser);
             }
         };
+
+        model.checkUsername = function(username) {
+            if(username == undefined || username == "") {
+                model.usernameExists = true;
+            } else {
+                UserService.findByUsername(username)
+                    .then(function(success) {
+                        model.usernameExists = success.success;
+                    });
+            }
+        };
+
 
         function createUser(newUser) {
             // create the user via the UserService

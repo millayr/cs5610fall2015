@@ -47,15 +47,15 @@ module.exports = function(db, mongoose) {
         return deferred.promise;
     }
 
-    // accepts a username and returns matching user doc if found
+    // accepts a username and returns true if found, false otherwise
     function findByUsername(username) {
         var deferred = q.defer();
 
-        UserModel.findOne({ username: username }, function(err, user) {
+        UserModel.findOne({ _id: username }, function(err, user) {
             if(err) {
                 deferred.reject(err);
             } else {
-                deferred.resolve(user);
+                deferred.resolve((user == null ? {success: false} : {success: true}));
             }
         });
 

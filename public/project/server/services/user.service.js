@@ -31,7 +31,7 @@ module.exports = function(app, userModel) {
         // 1 - find by creds
         // 2 - find by username
         // 3 - return all
-        if(rUsername != null && rPassword != null) {
+        if(rUsername != undefined && rPassword != undefined) {
             userModel
                 .findByCredentials({
                     username: rUsername,
@@ -40,7 +40,7 @@ module.exports = function(app, userModel) {
                 .then(function(user) {
                     res.json(user);
                 });
-        } else if(rUsername != null) {
+        } else if(rUsername != undefined) {
             userModel
                 .findByUsername(rUsername)
                 .then(function(user) {

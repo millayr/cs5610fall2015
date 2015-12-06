@@ -1,13 +1,17 @@
 <h1>Sign Up</h1>
 <form class="form-horizontal">
-    <div class="form-group">
+    <div ng-class="{'has-success' : model.usernameExists != undefined && !model.usernameExists,
+                    'has-error': model.usernameExists != undefined && model.usernameExists}"
+         class="form-group">
         <label for="username" class="col-sm-2 control-label">Username:</label>
         <div class="col-sm-9">
-            <input ng-model="model.newUser._id" id="username" type="text" class="form-control" placeholder="Username">
+            <input ng-model="model.newUser._id"
+                   ng-blur="model.checkUsername(model.newUser._id)"
+                   id="username" type="text" class="form-control" placeholder="Username">
         </div>
-        <div class="col-sm-1">
-            <span class="green glyphicon glyphicon-ok-circle"></span>
-            <span class="red glyphicon glyphicon-ban-circle"></span>
+        <div ng-if="model.usernameExists != undefined" class="col-sm-1">
+            <span ng-if="!model.usernameExists" class="green glyphicon glyphicon-ok-circle"></span>
+            <span ng-if="model.usernameExists" class="red glyphicon glyphicon-ban-circle"></span>
         </div>
     </div>
     <div class="form-group">
