@@ -46,9 +46,11 @@ module.exports = function(app, brewerydbModel, commentModel) {
 
     // update a commment and send the result back
     function updateComment(req, res) {
+        console.log("in the beer service");
         commentModel
             .update(req.params.commentid, req.body)
             .then(function(updatedComment) {
+                console.log("beer service response: " + updatedComment);
                 res.json(updatedComment);
             });
     }

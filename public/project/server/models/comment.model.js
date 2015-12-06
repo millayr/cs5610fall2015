@@ -74,11 +74,13 @@ module.exports = function(db, mongoose) {
 
     // Accepts the comment id and the new comment object to merge.
     function update(id, updatedComment) {
+        console.log("comment model: " + id + ", " + updatedComment);
         var deferred = q.defer();
 
         CommentModel.findByIdAndUpdate(id, { $set: updatedComment }, { new: true },
             function(err, comment) {
                 if(err) {
+                    console.log("comment model: " + err);
                     deferred.reject(err);
                 } else {
                     deferred.resolve(comment);
