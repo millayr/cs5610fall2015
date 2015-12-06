@@ -13,7 +13,7 @@
 
         model.signUp = function(newUser) {
             if(newUser._id == undefined
-                || newUser._id
+                || newUser._id == ""
                 || model.usernameExists) {
                 $window.alert("Please enter a valid and unique username!");
                 return;
