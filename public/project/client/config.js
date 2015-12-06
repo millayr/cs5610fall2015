@@ -50,7 +50,9 @@
                     controllerAs: "model"
                 })
                 .when("/dashboard", {
-                    templateUrl: "./views/dashboard/dashboard.view.html"
+                    templateUrl: "./views/dashboard/dashboard.view.html",
+                    controller: "DashboardController",
+                    controllerAs: "model"
                 })
                 .otherwise({
                     redirectTo: "/home"
