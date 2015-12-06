@@ -6,8 +6,9 @@
         .controller("BreweryInfoDescriptionController", BreweryInfoDescriptionController);
 
     function BreweryInfoDescriptionController($scope) {
+        var desc = this;
         $scope.$on("breweryLoad", function(event, brewery) {
-            $scope.brewery = brewery;
+            desc.brewery = brewery;
         })
     }
 })();

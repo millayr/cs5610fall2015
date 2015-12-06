@@ -1,12 +1,12 @@
 <div class="row">
-    <h1 id="beer-info-title">{{brewery.name}}</h1>
-    <p><label>Established:</label> {{brewery.established}}</p>
+    <h1 id="beer-info-title">{{desc.brewery.name}}</h1>
+    <p><label>Established:</label> {{desc.brewery.established}}</p>
     <p>
         <label>Website:</label>
-        <a ng-href={{brewery.website}} target="_blank"> {{brewery.website}}</a>
+        <a ng-href={{desc.brewery.website}} target="_blank"> {{desc.brewery.website}}</a>
     </p>
 </div>
 <div id="brewery-description" class="row">
     <h3>Description</h3>
-    <p>{{brewery.description}}</p>
+    <p>{{desc.brewery.description}}</p>
 </div>

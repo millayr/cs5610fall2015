@@ -6,26 +6,28 @@
         .controller("BreweryInfoSidebarController", BreweryInfoSidebarController);
 
     function BreweryInfoSidebarController($scope, $rootScope) {
+        var sidebar = this;
+
         // grab the query information that was tucked away in the root scope.
         // we'll use this to build the "back" link.
         if($rootScope.backPageUrl != undefined) {
-            $scope.backPageUrl = $rootScope.backPageUrl;
+            sidebar.backPageUrl = $rootScope.backPageUrl;
             delete $rootScope.backPageUrl;
         } else {
-            $scope.backPageUrl = "#/home";
+            sidebar.backPageUrl = "#/home";
         }
 
         if($rootScope.backData != undefined) {
-            $scope.backData = $rootScope.backData;
+            sidebar.backData = $rootScope.backData;
             delete $rootScope.backData;
         }
 
         $scope.$on("breweryLoad", function(event, brewery) {
-            $scope.breweryName = brewery.name;
+            sidebar.breweryName = brewery.name;
             if(brewery.images == undefined) {
-                $scope.imgUrl = "./img/generic_brewery.jpg";
+                sidebar.imgUrl = "./img/generic_brewery.jpg";
             } else {
-                $scope.imgUrl = brewery.images.medium;
+                sidebar.imgUrl = brewery.images.medium;
             }
         });
     }
