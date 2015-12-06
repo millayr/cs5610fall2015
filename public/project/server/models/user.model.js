@@ -33,6 +33,7 @@ module.exports = function(db, mongoose) {
     // fields.
     function update(username, updatedUser) {
         var deferred = q.defer();
+        delete updatedUser._id;
 
         UserModel.findByIdAndUpdate(username, { $set: updatedUser }, { new: true },
             function(err, user) {

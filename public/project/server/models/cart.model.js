@@ -66,10 +66,11 @@ module.exports = function(db, mongoose) {
 
     // Accepts an item id, username, and new item object.
     // Updates the item and then returns the user's new cart.
-    function updateItem(item) {
+    function updateItem(id, item) {
         var deferred = q.defer();
+        delete item._id;
 
-        CartModel.findByIdAndUpdate(item._id, { $set: item }, { new: true },
+        CartModel.findByIdAndUpdate(id, { $set: item }, { new: true },
             function(err, item) {
                 if(err) {
                     deferred.reject(err);

@@ -40,7 +40,7 @@ module.exports = function(app, cartModel) {
     // updates the item passed in the request body
     function updateItem(req, res) {
         cartModel
-            .updateItem(req.body)
+            .updateItem(req.params.id, req.body)
             .then(function(item) {
                 res.json(item);
             });
