@@ -10,7 +10,8 @@
             getBeer: getBeer,
             getTrendingBeers: getTrendingBeers,
             getBeerComments: getBeerComments,
-            addComment: addComment
+            addComment: addComment,
+            updateComment: updateComment
         };
         return service;
 
@@ -51,6 +52,17 @@
         function addComment(comment) {
             var deferred = $q.defer();
             $http.post("/api/project/beer/comment", comment)
+                .success(function(response) {
+                    deferred.resolve(response);
+                });
+            return deferred.promise;
+        }
+
+        // Accepts a comment id and an updated comment object.  Returns
+        // the newly updated comment.
+        function updateComment(id, updatedComment) {
+            var deferred = $q.defer();
+            $http.put("/api/project/beer/comment/" + id, updatedComment)
                 .success(function(response) {
                     deferred.resolve(response);
                 });

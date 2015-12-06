@@ -9,6 +9,7 @@
         var com = this;
         var user = $rootScope.user;
         com.isLoggedIn = (user != undefined);
+        com.isOwner = false;
         com.newComment = {};
         com.starArrays = initStarArrays();
 
@@ -18,6 +19,7 @@
             BeerService.getBeerComments(com.beer.id)
                 .then(function(commentData) {
                     com.comments = commentData.comments;
+                    com.isOwner = com.isLoggedIn && isOwner(user, com.beer);
                     $rootScope.$broadcast("averagesLoad", commentData.averages[0]);
                 });
         });
@@ -54,6 +56,14 @@
             return new Array(number);
         };
 
+        com.respond = function(index, updatedComment) {
+            updatedComment.responded = true;
+            BeerService.updateComment(updatedComment._id, updatedComment)
+                .then(function(mergedComment) {
+                    com.comments[index] = mergedComment;
+                });
+        };
+
         function validateStars() {
             var categories = ["smell", "taste", "hops", "malts"];
             for(var i = 0; i < categories.length; i++) {
@@ -82,6 +92,22 @@
                 hops: [false, false, false, false, false],
                 malts: [false, false, false, false, false]
             };
+        }
+
+        // determine if the logged in user is viewing one of their
+        // beers that they brew.
+        function isOwner(user, beer) {
+            if(!user.isBrewery || user.beers == undefined) {
+                return false;
+            }
+
+            for(var i = 0; i < user.beers.length; i++) {
+                if(beer.id == user.beers[i].beerid) {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 })();

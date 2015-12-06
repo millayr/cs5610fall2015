@@ -24,6 +24,11 @@ module.exports = function(mongoose) {
         date: {
             type: Date,
             default: Date.now
+        },
+        response: String,
+        responded: {
+            type: Boolean,
+            default: false
         }
     }, { collection: "cs5610.project.comment" });
     return CommentSchema;

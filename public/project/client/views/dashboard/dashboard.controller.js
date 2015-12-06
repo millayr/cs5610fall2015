@@ -32,6 +32,12 @@
             BeerService.getBeerComments(row.beerid)
                 .then(function(comments) {
                     row.averages = comments.averages[0];
+                    if(row.averages != undefined) {
+                        row.averages.avgSmell = Math.round(row.averages.avgSmell);
+                        row.averages.avgTaste = Math.round(row.averages.avgTaste);
+                        row.averages.avgHops = Math.round(row.averages.avgHops);
+                        row.averages.avgMalts = Math.round(row.averages.avgMalts);
+                    }
                     deferred.resolve(row);
                 });
 

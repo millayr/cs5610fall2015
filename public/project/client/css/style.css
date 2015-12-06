@@ -21,7 +21,6 @@ tfoot > tr {
 	padding-bottom: 15px;
 	border-top: 3px solid white;
 	border-bottom: solid black 1px;
-	/*background-color: #b0a18e;*/
 	background-color: #F5F5F5;
 	position: fixed;
 	width: 100%;
@@ -153,6 +152,14 @@ ul.pagination > li > a:hover {
 
 #brewery-beers-link {
 	margin-top: 20px;
+}
+
+.response-submit {
+	margin-top: 5px;
+}
+
+.response {
+	background-color: #F0F0D8;
 }
 
 .checkout-title {

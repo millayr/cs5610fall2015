@@ -7,7 +7,8 @@ module.exports = function(db, mongoose) {
     var CommentModel = mongoose.model("CommentModel", CommentSchema);
     var api = {
         create: create,
-        findByBeerId: findByBeerId
+        findByBeerId: findByBeerId,
+        update: update
     };
     return api;
 
@@ -67,6 +68,23 @@ module.exports = function(db, mongoose) {
                 });
             }
         });
+
+        return deferred.promise;
+    }
+
+    // Accepts the comment id and the new comment object to merge.
+    function update(id, updatedComment) {
+        var deferred = q.defer();
+
+        CommentModel.findByIdAndUpdate(id, { $set: updatedComment }, { new: true },
+            function(err, comment) {
+                if(err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(comment);
+                }
+            }
+        );
 
         return deferred.promise;
     }

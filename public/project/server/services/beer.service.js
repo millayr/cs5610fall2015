@@ -6,6 +6,7 @@ module.exports = function(app, brewerydbModel, commentModel) {
     app.get("/api/project/trendingBeers/:num", getTrendingBeers);
     app.get("/api/project/beer/:beerid/comment", getBeerComments);
     app.post("/api/project/beer/comment", addComment);
+    app.put("/api/project/beer/comment/:commentid", updateComment);
 
     // send back data for a specific beer
     function getBeerById(req, res) {
@@ -40,6 +41,15 @@ module.exports = function(app, brewerydbModel, commentModel) {
             .create(req.body)
             .then(function(commentData) {
                 res.json(commentData);
+            });
+    }
+
+    // update a commment and send the result back
+    function updateComment(req, res) {
+        commentModel
+            .update(req.params.commentid, req.body)
+            .then(function(updatedComment) {
+                res.json(updatedComment);
             });
     }
 };

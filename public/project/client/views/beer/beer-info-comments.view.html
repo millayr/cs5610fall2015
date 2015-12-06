@@ -81,7 +81,8 @@
 </form>
 <div id="user-comments" class="row">
     <div class="container-fluid">
-        <div ng-repeat="comment in com.comments" class="comment panel panel-success">
+        <div ng-repeat="comment in com.comments track by $index"
+             class="comment panel panel-info">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <b>{{comment.username}}</b>
@@ -122,6 +123,21 @@
                         <p class="comment-desc">{{comment.comment}}</p>
                     </div>
                 </div>
+            </div>
+            <div ng-if="com.isOwner && !comment.responded"
+                 class="panel-footer response">
+                <textarea class="form-control"
+                          rows="2"
+                          placeholder="Enter response here!"
+                          ng-model="comment.response"></textarea>
+                <button ng-click="com.respond($index, comment)"
+                        class="btn btn-danger response-submit">Leave Response</button>
+            </div>
+            <div ng-if="comment.responded"
+                 class="panel-footer response">
+                <p>
+                    <span class="label label-danger">Official Brewer</span> {{comment.response}}
+                </p>
             </div>
         </div>
     </div>
