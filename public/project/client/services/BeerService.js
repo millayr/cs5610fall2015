@@ -61,7 +61,6 @@
         // Accepts a comment id and an updated comment object.  Returns
         // the newly updated comment.
         function updateComment(id, updatedComment) {
-            console.log("in the beer service");
             var deferred = $q.defer();
             $http.put("/api/project/beer/comment/" + id, updatedComment)
                 .success(function(response) {
