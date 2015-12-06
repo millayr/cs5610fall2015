@@ -60,6 +60,7 @@
             updatedComment.responded = true;
             BeerService.updateComment(updatedComment._id, updatedComment)
                 .then(function(mergedComment) {
+                    console.log(mergedComment);
                     com.comments[index] = mergedComment;
                 });
         };
