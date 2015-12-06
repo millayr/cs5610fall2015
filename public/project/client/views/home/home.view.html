@@ -8,38 +8,47 @@
         physical and figurative distances between the beer enthusiast and brewery.
         Consumers now have countless new beers at their fingertips and breweries are
         reaching regions and markets that they never thought possible!  Drink on!</p>
+    <p><a class="btn btn-info btn-lg"
+          target="_blank"
+          href="https://docs.google.com/document/d/1eWWtj-rk0gZ8UhnqFKRzXLLxFh4C6AdNvskjKf8w6Ls/edit?usp=sharing"
+          role="button">Learn more</a>
+    </p>
 </div>
-<h1 class="text-danger">Trending Beers</h1>
-<div class="row result-row">
-    <div ng-repeat="beer in model.beers" class="col-sm-2 result-tile center-block text-center">
-        <div>
-            <img ng-if="beer.labels.medium != undefined"
-                 ng-src={{beer.labels.medium}}
-                 alt="Beer Label"
-                 class="img-thumbnail img-responsive">
-            <img ng-if="beer.labels.medium == undefined"
-                 src="./img/generic_beer.png"
-                 alt="Beer Label"
-                 class="img-thumbnail img-responsive">
+<h1 class="text-danger">Trending Beers <span class="glyphicon glyphicon-signal"></span></h1>
+<div class="well">
+    <div class="row">
+        <div ng-repeat="beer in model.beers" class="col-sm-2 result-tile center-block text-center">
+            <div>
+                <img ng-if="beer.labels.medium != undefined"
+                     ng-src={{beer.labels.medium}}
+                     alt="Beer Label"
+                     class="img-thumbnail img-responsive">
+                <img ng-if="beer.labels.medium == undefined"
+                     src="./img/generic_beer.png"
+                     alt="Beer Label"
+                     class="img-thumbnail img-responsive">
+            </div>
+            <label><a href="#/beer-info/{{beer.id}}">{{beer.name}}</a></label>
         </div>
-        <label><a href="#/beer-info/{{beer.id}}">{{beer.name}}</a></label>
     </div>
 </div>
 
-<h1 class="text-danger">Trending Breweries</h1>
-<div class="row result-row">
-    <div ng-repeat="brewery in model.breweries" class="col-sm-2 result-tile center-block text-center">
-        <div>
-            <img ng-if="brewery.images.medium != undefined"
-                 ng-src={{brewery.images.medium}}
-                 alt="Brewery Image"
-                 class="img-thumbnail img-responsive">
-            <img ng-if="brewery.images.medium == undefined"
-                 src="./img/generic_brewery.jpg"
-                 alt="Brewery Image"
-                 class="img-thumbnail img-responsive">
+<h1 class="text-danger">Trending Breweries <span class="glyphicon glyphicon-signal"></span></h1>
+<div class="well">
+    <div class="row">
+        <div ng-repeat="brewery in model.breweries" class="col-sm-2 result-tile center-block text-center">
+            <div>
+                <img ng-if="brewery.images.medium != undefined"
+                     ng-src={{brewery.images.medium}}
+                     alt="Brewery Image"
+                     class="img-thumbnail img-responsive">
+                <img ng-if="brewery.images.medium == undefined"
+                     src="./img/generic_brewery.jpg"
+                     alt="Brewery Image"
+                     class="img-thumbnail img-responsive">
+            </div>
+            <label><a href="#/brewery-info/{{brewery.id}}">{{brewery.name}}</a></label>
         </div>
-        <label><a href="#/brewery-info/{{brewery.id}}">{{brewery.name}}</a></label>
     </div>
 </div>
 

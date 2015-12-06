@@ -7,16 +7,34 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a id="brew-house-title" class="navbar-brand brew-house-header" href="#/home">Brew House</a>
+            <a id="brew-house-title" class="navbar-brand brew-house-header" href="#/home">
+                <span class="glyphicon glyphicon-home"></span> Brew House</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul id="link-menu" class="nav navbar-nav navbar-right">
-                <li ng-if="!header.isLoggedIn"><a href="#/signup">Sign Up</a></li>
-                <li ng-if="!header.isLoggedIn"><a href="#/login">Login</a></li>
-                <li ng-if="header.isLoggedIn"><a href="#/profile">{{header.username}}</a></li>
-                <li ng-if="header.isLoggedIn"><a href="#/cart">Shopping Cart</a></li>
-                <li ng-if="header.isLoggedIn && header.isBrewery"><a href="#/dashboard">Brewer's Dashboard</a></li>
-                <li ng-if="header.isLoggedIn"><a id="logout" ng-click="header.logout()">Logout</a></li>
+                <li ng-if="!header.isLoggedIn">
+                    <a href="#/signup">
+                        <span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                </li>
+                <li ng-if="!header.isLoggedIn">
+                    <a href="#/login">
+                        <span class="glyphicon glyphicon-log-in"></span> Login</a>
+                </li>
+                <li ng-if="header.isLoggedIn">
+                    <a href="#/profile">
+                        <span class="glyphicon glyphicon-user"></span> {{header.username}}</a>
+                </li>
+                <li ng-if="header.isLoggedIn">
+                    <a href="#/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</a>
+                </li>
+                <li ng-if="header.isLoggedIn && header.isBrewery">
+                    <a href="#/dashboard">
+                        <span class="glyphicon glyphicon-th-list"></span> Brewer's Dashboard</a>
+                </li>
+                <li ng-if="header.isLoggedIn">
+                    <a id="logout" ng-click="header.logout()">
+                        <span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                </li>
             </ul>
         </div>
     </div>
