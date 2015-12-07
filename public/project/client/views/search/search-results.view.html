@@ -28,26 +28,26 @@
         <div ng-repeat="row in model.resultRows" class="row result-row">
             <div ng-repeat="result in row" class="col-sm-2 result-tile text-center center-block">
                 <div ng-switch="result.type">
-                    <img ng-switch-when="beer"
-                         ng-if="result.labels.medium != undefined"
-                         ng-src={{result.labels.medium}}
-                         alt="Result Image"
-                         class="img-thumbnail img-responsive">
-                    <img ng-switch-when="beer"
-                         ng-if="result.labels.medium == undefined"
-                         src="./img/generic_beer.png"
-                         alt="Result Image"
-                         class="img-thumbnail img-responsive">
-                    <img ng-switch-when="brewery"
-                         ng-if="result.images.medium != undefined"
-                         ng-src={{result.images.medium}}
-                         alt="Result Image"
-                         class="img-thumbnail img-responsive">
-                    <img ng-switch-when="brewery"
-                         ng-if="result.images.medium == undefined"
-                         ng-src="./img/generic_brewery.jpg"
-                         alt="Result Image"
-                         class="img-thumbnail img-responsive">
+                    <a ng-switch-when="beer" href="#/beer-info/{{result.id}}">
+                        <img ng-if="result.labels.medium != undefined"
+                             ng-src={{result.labels.medium}}
+                             alt="Result Image"
+                             class="img-thumbnail img-responsive">
+                        <img ng-if="result.labels.medium == undefined"
+                             src="./img/generic_beer.png"
+                             alt="Result Image"
+                             class="img-thumbnail img-responsive">
+                    </a>
+                    <a ng-switch-when="brewery" href="#/brewery-info/{{result.id}}">
+                        <img ng-if="result.images.medium != undefined"
+                             ng-src={{result.images.medium}}
+                             alt="Result Image"
+                             class="img-thumbnail img-responsive">
+                        <img ng-if="result.images.medium == undefined"
+                             ng-src="./img/generic_brewery.jpg"
+                             alt="Result Image"
+                             class="img-thumbnail img-responsive">
+                    </a>
                 </div>
                 <label ng-switch="result.type">
                     <a ng-switch-when="beer" href="#/beer-info/{{result.id}}">{{result.name}}</a>

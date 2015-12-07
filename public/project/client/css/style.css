@@ -65,10 +65,15 @@ label.no-padding {
 	line-height: 200px;
 }
 
-.result-tile > div > img {
+.result-tile > div > a > img {
 	max-height: 200px;
 	vertical-align: middle;
 }
+
+.result-tile > div > a > img:hover {
+	border: solid 1px #337ab7;
+}
+
 .result-tile > label {
 	padding-top: 10px;
 }
